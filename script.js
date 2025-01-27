@@ -64,8 +64,8 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
-// Automatically change slides every 5 seconds
-setInterval(nextSlide, 5000);
+// Automatically change slides every 12 seconds
+setInterval(nextSlide, 12000);
 
 // Manual navigation with arrows
 document.querySelector('.arrow.next').addEventListener('click', nextSlide);
