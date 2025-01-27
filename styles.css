@@ -1,0 +1,201 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #111; /* Slightly lighter black for header */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #d4af37; /* Dark gold border */
+}
+
+header .logo img {
+    max-width: 150px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #d4af37; /* Dark gold for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Brighter gold on hover */
+}
+
+.hero {
+    background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #d4af37; /* Dark gold text for hero section */
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+.about, .inquiry-form, .gallery {
+    padding: 20px;
+    text-align: center;
+    background-color: #111; /* Slightly lighter black for sections */
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #d4af37; /* Dark gold border */
+}
+
+footer {
+    background-color: #111; /* Slightly lighter black for footer */
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 2px solid #d4af37; /* Dark gold border */
+    color: #d4af37; /* Dark gold text for footer */
+}
+
+/* Slideshow Styles */
+.slideshow {
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: 20px auto;
+    overflow: hidden;
+    border: 2px solid #d4af37; /* Dark gold border */
+    border-radius: 10px;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: none; /* Hide all slides by default */
+}
+
+.slide.active {
+    display: block; /* Show the active slide */
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Adjust as needed */
+    object-fit: cover; /* Ensure images fit nicely */
+    border-radius: 10px;
+}
+
+/* Navigation Arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #d4af37;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+/* Photos Page Styles */
+.gallery {
+    padding: 20px;
+    text-align: center;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 10px;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Adjust as needed */
+    object-fit: cover; /* Ensure images fit nicely */
+    border-radius: 5px;
+    border: 2px solid #000; /* Dark gold border */
+}/* Inquiry Page Styles */
+.inquiry-form {
+    padding: 20px;
+    text-align: center;
+    background-color: #111; /* Slightly lighter black for sections */
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #d4af37; /* Dark gold border */
+}
+
+.inquiry-form form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.inquiry-form label {
+    display: block; /* Ensures labels are on their own line */
+    margin: 10px 0 5px;
+    color: #d4af37; /* Dark gold for labels */
+}
+
+.inquiry-form input, .inquiry-form textarea {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d4af37; /* Dark gold border */
+    background-color: #fff; /* white background for inputs */
+    color: #000; /* White text */
+}
+
+.inquiry-form button {
+    background-color: #d4af37; /* Dark gold button */
+    color: #000; /* Black text */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: 50%; /* Full width */
+}
+
+.inquiry-form button:hover {
+    background-color: #ffd700; /* Brighter gold on hover */
+}
