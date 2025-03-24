@@ -1,12 +1,11 @@
 // Array of image file names in the assets/images folder
 const imageFiles = [
-    "photo7.jpg",
     "photo1.jpg",
     "photo2.jpg",
     "photo3.jpg",
-    "photo4.jpg",
-    "photo5.jpg",
-    "photo6.jpg",
+    //"photo4.jpg",
+    //"photo5.jpg",
+    //"photo6.jpg",
     // Add more image file names here
 ];
 
