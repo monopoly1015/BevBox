@@ -49,6 +49,7 @@
             color: red;
             padding: 10px;
             border: 2px dashed red;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -73,7 +74,7 @@
             <article class="product-card">
                 <a href="/12ft-bar.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="/assets/images/products/barphoto1.jpg" 
+                        <img src="/assets/images/barphoto1.jpg" 
                              alt="12ft Mobile Bar"
                              loading="lazy"
                              data-filename="barphoto1.jpg"
@@ -90,7 +91,7 @@
             <article class="product-card">
                 <a href="/tv-package.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="/assets/images/products/tvphoto.jpg" 
+                        <img src="/assets/images/tvphoto.jpg" 
                              alt="TV Entertainment Package"
                              loading="lazy"
                              data-filename="tvphoto.jpg"
@@ -110,46 +111,6 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
-    <script>
-        function handleImageError(img) {
-            console.error('Image failed to load:', img.src);
-            
-            // Create error message
-            const errorMsg = document.createElement('div');
-            errorMsg.className = 'image-error';
-            errorMsg.textContent = `Failed to load: ${img.dataset.filename}`;
-            img.parentElement.appendChild(errorMsg);
-            
-            // Try alternative paths
-            const alternatives = [
-                `/assets/images/products/${img.dataset.filename}`,
-                `assets/images/products/${img.dataset.filename}`,
-                `https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/assets/images/products/${img.dataset.filename}`
-            ];
-            
-            for (let path of alternatives) {
-                const testImg = new Image();
-                testImg.onload = function() {
-                    img.src = path;
-                    console.log('Loaded successfully from:', path);
-                };
-                testImg.src = path;
-            }
-        }
-
-        // Verify images on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.product-image-container img');
-            images.forEach(img => {
-                // Add cache busting
-                img.src = img.src + '?v=' + Date.now();
-                
-                // Check if loaded
-                if (!img.complete || img.naturalWidth === 0) {
-                    console.warn('Image may not load:', img.src);
-                }
-            });
-        });
-    </script>
+    <script src="/js/products.js"></script>
 </body>
 </html>
