@@ -311,3 +311,45 @@ footer {
     display: flex;
   }
 }
+/* ===== NUCLEAR IMAGE FIXES ===== */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.product-card {
+    border: 1px solid #eee; /* Visual boundary */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Double-container technique */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 aspect ratio */
+}
+
+.product-image-container > picture,
+.product-image-container > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Debugging styles */
+body.debug-image .product-image-container {
+    background: rgba(255,0,0,0.1);
+    outline: 2px dashed red;
+}
+
+body.debug-image .product-image-container img {
+    opacity: 0.9;
+    border: 2px solid blue;
+}
