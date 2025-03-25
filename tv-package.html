@@ -5,26 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV Entertainment Package - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Add these styles */
+        #editLock {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            padding: 5px;
+            border-radius: 50%;
+        }
+        #editLock img {
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+        .edit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #editTextarea {
+            width: 100%;
+            min-height: 150px;
+            margin: 10px 0;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #editPassword {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #saveEdit {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #editError {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="../assets/images/logo.jpg" alt="LI PartyCo Logo">
+            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../products.html">Products</a></li>
-                <li><a href="../inquiry.html">Inquiry</a></li>
-                <li><a href="../photos.html">Photos</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/products.html">Products</a></li>
+                <li><a href="/inquiry.html">Inquiry</a></li>
+                <li><a href="/photos.html">Photos</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="product-detail">
+    <main class="product-detail" style="position: relative;">
+        <!-- Edit Lock Button -->
+        <div id="editLock" title="Edit Description">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
+        </div>
+
         <div class="product-image-container">
-            <img src="../assets/images/tv-product.jpg" alt="TV Entertainment Package">
+            <img src="/assets/images/tv-product.jpg" alt="TV Entertainment Package">
         </div>
         
         <div class="product-info">
@@ -44,25 +118,22 @@
         <div class="gallery">
             <h3>Gallery</h3>
             <div class="photo-grid">
-                <img src="../assets/images/tv-detail-1.jpg" alt="TV Setup">
-                <img src="../assets/images/tv-detail-2.jpg" alt="Sound System">
-                <img src="../assets/images/tv-detail-3.jpg" alt="In Action">
+                <img src="/assets/images/tv-detail-1.jpg" alt="TV Setup">
+                <img src="/assets/images/tv-detail-2.jpg" alt="Sound System">
+                <img src="/assets/images/tv-detail-3.jpg" alt="In Action">
             </div>
         </div>
     </main>
 
-    <div class="edit-lock" id="editLock">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
-    </div>
-
-    <div class="edit-modal" id="editModal" style="display: none;">
+    <!-- Edit Modal -->
+    <div id="editModal" class="edit-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h3>Edit Description</h3>
             <textarea id="editTextarea" rows="6"></textarea>
-            <input type="password" id="editPassword" placeholder="Enter password">
+            <input type="password" id="editPassword" placeholder="Enter admin password">
             <button id="saveEdit">Save Changes</button>
-            <p id="editError"></p>
+            <p id="editError" class="error"></p>
         </div>
     </div>
 
@@ -70,9 +141,6 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
-    <script src="../js/product-edit.js"></script>
-</body>
-</html>
-    <script src="js/product-edit.js"></script>
+    <script src="/js/product-edit.js"></script>
 </body>
 </html>
