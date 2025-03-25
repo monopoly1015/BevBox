@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preload images with absolute paths
     const basePath = window.location.origin;
     const images = [
-        `${basePath}/assets/images/12ft-bar-product.jpg`,
-        `${basePath}/assets/images/tv-product.jpg`
+        `${basePath}/assets/images/barphoto.jpg`,
+        `${basePath}/assets/images/tvphoto.jpg`
     ];
 
     images.forEach(src => {
