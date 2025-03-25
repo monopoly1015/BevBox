@@ -1,20 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preload images
+    // Preload images with absolute paths
+    const basePath = window.location.origin;
     const images = [
-        '/assets/images/12ft-bar-product.jpg',
-        '/assets/images/tv-product.jpg'
+        `${basePath}/assets/images/12ft-bar-product.jpg`,
+        `${basePath}/assets/images/tv-product.jpg`
     ];
 
     images.forEach(src => {
-        new Image().src = src;
+        const img = new Image();
+        img.src = src;
+        img.onerror = () => console.error('Failed to preload:', src);
     });
 
-    // Verify image loading
+    // Fallback for broken images
     document.querySelectorAll('.product-image-container img').forEach(img => {
         img.onerror = function() {
-            console.error('Failed to load image:', this.src);
             this.style.display = 'none';
-            this.parentElement.style.background = `url('/assets/images/image-placeholder.svg') center/contain no-repeat`;
+            const placeholderSVG = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5f5f5'/><text x='50%' y='50%' font-family='Arial' font-size='12' text-anchor='middle' fill='%23aaa'>Image not available</text></svg>`;
+            this.parentElement.style.background = `url("${placeholderSVG}") center/contain no-repeat`;
         };
     });
 });
