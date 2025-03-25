@@ -310,3 +310,44 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* Add these to your existing styles.css */
+.product-image-container {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.edit-lock {
+    display: flex !important;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: rgba(227, 27, 35, 0.85);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.edit-lock:hover {
+    background: rgba(227, 27, 35, 1);
+    transform: scale(1.1);
+}
+
+.edit-lock img {
+    width: 25px;
+    height: 25px;
+}
