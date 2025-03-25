@@ -6,32 +6,22 @@
     <title>Products - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
-    <style>
-        /* Critical CSS to force image display */
-        .product-image-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4/3; /* Modern browsers */
-            padding-bottom: 75%; /* Fallback for older browsers */
-            background: #f5f5f5 url('/assets/images/image-placeholder.svg') center/contain no-repeat;
-            overflow: hidden;
-        }
-        .product-image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: opacity 0.3s ease;
-        }
-        .product-image-container img.hidden {
-            opacity: 0;
-        }
-    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/products.html">Products</a></li>
+                <li><a href="/inquiry.html">Inquiry</a></li>
+                <li><a href="/photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="products-container">
         <h1>Our Rentals</h1>
         <div class="products-grid">
@@ -41,7 +31,7 @@
                         <img src="/assets/images/12ft-bar-product.jpg" 
                              alt="12ft Mobile Bar" 
                              loading="lazy"
-                             onerror="this.classList.add('hidden')">
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="product-info">
                         <h3>12ft Collapsable Bar</h3>
@@ -56,7 +46,7 @@
                         <img src="/assets/images/tv-product.jpg" 
                              alt="TV Entertainment Package" 
                              loading="lazy"
-                             onerror="this.classList.add('hidden')">
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="product-info">
                         <h3>Entertainment Package</h3>
@@ -67,21 +57,10 @@
         </div>
     </main>
 
-    <script>
-        // Nuclear fallback - checks if images actually loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.product-image-container img').forEach(img => {
-                // If naturalHeight is 0, image failed to load
-                if(img.complete && img.naturalHeight === 0) {
-                    img.classList.add('hidden');
-                }
-                
-                // Additional check for slow-loading images
-                img.addEventListener('error', function() {
-                    this.classList.add('hidden');
-                });
-            });
-        });
-    </script>
+    <footer>
+        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/products.js"></script>
 </body>
 </html>
