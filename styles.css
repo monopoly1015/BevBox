@@ -1,201 +1,225 @@
-/* General Styles */
+/* Modern Base Styles */
+:root {
+  --primary: #E31B23; /* Vibrant red from your logo */
+  --secondary: #000000; /* Black from your logo */
+  --accent: #FFFFFF; /* White for contrast */
+  --highlight: #FFD700; /* Gold for accents */
+}
+
+/* Modern Layout Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+  background: var(--secondary);
+  color: var(--accent);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Modern Header */
 header {
-    background-color: #111; /* Slightly lighter black for header */
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid #d4af37; /* Dark gold border */
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 100;
 }
 
-header .logo img {
-    max-width: 150px;
+.logo img {
+  height: 80px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
+/* Modern Navigation */
 nav ul {
-    list-style: none;
-    padding: 0;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-nav ul li a {
-    color: #d4af37; /* Dark gold for links */
-    text-decoration: none;
-    font-weight: bold;
+nav a:hover {
+  color: var(--highlight);
+  transform: translateY(-2px);
 }
 
-nav ul li a:hover {
-    color: #ffd700; /* Brighter gold on hover */
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--highlight);
+  transition: width 0.3s ease;
 }
 
+nav a:hover::after {
+  width: 70%;
+}
+
+/* Modern Hero Section */
 .hero {
-    background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #d4af37; /* Dark gold text for hero section */
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+              url('assets/images/hero-bg.jpg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--accent);
+  position: relative;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin: 0;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--primary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-    font-size: 1.5rem;
+  font-size: 1.8rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--accent);
 }
 
-.about, .inquiry-form, .gallery {
-    padding: 20px;
-    text-align: center;
-    background-color: #111; /* Slightly lighter black for sections */
-    margin: 20px;
-    border-radius: 10px;
-    border: 1px solid #d4af37; /* Dark gold border */
+/* Modern Content Sections */
+.about, .gallery {
+  padding: 4rem 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
 }
 
-footer {
-    background-color: #111; /* Slightly lighter black for footer */
-    padding: 10px;
-    text-align: center;
-    margin-top: 20px;
-    border-top: 2px solid #d4af37; /* Dark gold border */
-    color: #d4af37; /* Dark gold text for footer */
+.about {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Updated Slideshow Styles */
-.slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    overflow: hidden;
-    border: 2px solid #d4af37;
-    border-radius: 10px;
-    height: 400px; /* Fixed height */
+.about h2 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-.slides {
-    position: relative;
-    height: 100%;
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Navigation Arrows */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #d4af37;
-    border: none;
-    cursor: pointer;
-    padding: 15px;
-    font-size: 24px;
-    border-radius: 50%;
-    z-index: 10;
-    transition: all 0.3s ease;
-}
-
-.arrow:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-    left: 20px;
-}
-
-.next {
-    right: 20px;
-}
-/* Photos Page Styles */
-.gallery {
-    padding: 20px;
-    text-align: center;
+/* Modern Gallery Grid */
+.gallery h2 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .photo-grid img {
-    width: 100%;
-    height: auto;
-    max-height: 200px; /* Adjust as needed */
-    object-fit: cover; /* Ensure images fit nicely */
-    border-radius: 5px;
-    border: 2px solid #000; /* Dark gold border */
-}/* Inquiry Page Styles */
-.inquiry-form {
-    padding: 20px;
-    text-align: center;
-    background-color: #111; /* Slightly lighter black for sections */
-    margin: 20px;
-    border-radius: 10px;
-    border: 1px solid #d4af37; /* Dark gold border */
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.inquiry-form form {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
+.photo-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
-.inquiry-form label {
-    display: block; /* Ensures labels are on their own line */
-    margin: 10px 0 5px;
-    color: #d4af37; /* Dark gold for labels */
+/* Modern Footer */
+footer {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: var(--accent);
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
+  font-weight: 500;
 }
 
-.inquiry-form input, .inquiry-form textarea {
-    width: 100%; /* Full width */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #d4af37; /* Dark gold border */
-    background-color: #fff; /* white background for inputs */
-    color: #000; /* White text */
+footer p {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
-.inquiry-form button {
-    background-color: #d4af37; /* Dark gold button */
-    color: #000; /* Black text */
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    width: 50%; /* Full width */
+/* Modern Responsive Adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .logo img {
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  
+  nav ul {
+    gap: 1rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .about, .gallery {
+    padding: 2rem 1rem;
+  }
+  
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .inquiry-form button:hover {
