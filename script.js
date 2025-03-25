@@ -1,110 +1,116 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Slideshow items (now including videos)
-    const slideshowItems = [
-        { type: 'image', src: 'photo1.jpg' },
-        { type: 'image', src: 'photo2.jpg' },
-        { type: 'image', src: 'photo3.jpg' },
-        { type: 'video', src: 'promo.mp4' } // Add your video
+    // Slideshow configuration
+    const slides = [
+        { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
+        { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
+        { type: 'video', src: 'promo.mp4', alt: 'Company promo' },
+        { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' }
     ];
 
-    // Initialize slideshow
+    // DOM elements
     const slidesContainer = document.querySelector('.slides');
-    if (slidesContainer) {
-        // Clear existing content
-        slidesContainer.innerHTML = '';
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentIndex = 0;
+    let interval;
 
-        // Create slides
-        slideshowItems.forEach((item, index) => {
-            const slide = document.createElement('div');
-            slide.classList.add('slide');
-            if (index === 0) slide.classList.add('active');
-
-            if (item.type === 'image') {
-                const img = document.createElement('img');
-                img.src = `assets/images/${item.src}`;
-                img.alt = `Event Image ${index + 1}`;
-                img.loading = "lazy";
-                img.style.maxHeight = '100%';
-                img.style.width = 'auto';
-                slide.appendChild(img);
-            } else if (item.type === 'video') {
-                const video = document.createElement('video');
-                video.autoplay = true;
-                video.muted = true;
-                video.loop = true;
-                video.playsinline = true;
-                
-                const source = document.createElement('source');
-                source.src = `assets/videos/${item.src}`;
-                source.type = 'video/mp4';
-                
-                video.appendChild(source);
-                video.appendChild(document.createTextNode('Your browser does not support HTML5 video.'));
-                slide.appendChild(video);
-                slide.classList.add('video-slide');
-            }
-
-            slidesContainer.appendChild(slide);
-        });
-
-        // Slideshow controls
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-                // Pause any videos when not active
-                const video = slide.querySelector('video');
-                if (video) video.pause();
-            });
+    // Create slides
+    function initializeSlides() {
+        slides.forEach((slide, index) => {
+            const slideEl = document.createElement('div');
+            slideEl.className = 'slide';
             
-            slides[index].classList.add('active');
-            // Play video if this slide has one
-            const video = slides[index].querySelector('video');
-            if (video) video.play();
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function startSlideShow() {
-            slideInterval = setInterval(nextSlide, 5000); // 5s interval
-        }
-
-        // Initial setup
-        showSlide(currentSlide);
-        startSlideShow();
-
-        // Pause on hover
-        slidesContainer.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-            const video = slides[currentSlide].querySelector('video');
-            if (video) video.pause();
-        });
-
-        slidesContainer.addEventListener('mouseleave', () => {
-            startSlideShow();
-            const video = slides[currentSlide].querySelector('video');
-            if (video) video.play();
-        });
-
-        // Navigation arrows
-        document.querySelector('.arrow.next')?.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            nextSlide();
-            startSlideShow();
-        });
-
-        document.querySelector('.arrow.prev')?.addEventListener('click', function() {
-            clearInterval(slideInterval);
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-            startSlideShow();
+            if (slide.type === 'image') {
+                slideEl.innerHTML = `
+                    <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
+                `;
+            } else {
+                slideEl.innerHTML = `
+                    <video muted loop playsinline webkit-playsinline>
+                        <source src="assets/videos/${slide.src}" type="video/mp4">
+                    </video>
+                `;
+                slideEl.classList.add('video-slide');
+            }
+            
+            slidesContainer.appendChild(slideEl);
         });
     }
+
+    // Show specific slide
+    function showSlide(index) {
+        const slideElements = document.querySelectorAll('.slide');
+        
+        // Hide all slides
+        slideElements.forEach(slide => {
+            slide.classList.remove('active');
+            const video = slide.querySelector('video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+                // Remove any existing play buttons
+                const existingBtn = slide.querySelector('.video-play-btn');
+                if (existingBtn) existingBtn.remove();
+            }
+        });
+        
+        // Show current slide
+        slideElements[index].classList.add('active');
+        const video = slideElements[index].querySelector('video');
+        
+        // Handle video playback
+        if (video) {
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    if (error.name === 'NotAllowedError') {
+                        // Show play button when autoplay is blocked
+                        const playBtn = document.createElement('button');
+                        playBtn.className = 'video-play-btn';
+                        playBtn.innerHTML = '▶ Play Video';
+                        playBtn.onclick = () => {
+                            video.play()
+                                .then(() => playBtn.remove())
+                                .catch(e => console.log('Playback failed:', e));
+                        };
+                        video.parentNode.appendChild(playBtn);
+                    }
+                });
+            }
+        }
+    }
+
+    // Start slideshow timer
+    function startSlideshow() {
+        clearInterval(interval);
+        interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }, 5000);
+    }
+
+    // Initialize slideshow
+    initializeSlides();
+    showSlide(0);
+    startSlideshow();
+
+    // Navigation controls
+    prevBtn.addEventListener('click', () => {
+        clearInterval(interval);
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+        startSlideshow();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        clearInterval(interval);
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+        startSlideshow();
+    });
+
+    // Pause on hover
+    slidesContainer.addEventListener('mouseenter', () => clearInterval(interval));
+    slidesContainer.addEventListener('mouseleave', startSlideshow);
 });
