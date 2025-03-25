@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12ft Bar - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
     <header>
         <div class="logo">
-            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
+            <img src="../assets/images/logo.jpg" alt="LI PartyCo Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="inquiry.html">Inquiry</a></li>
-                <li><a href="photos.html">Photos</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../inquiry.html">Inquiry</a></li>
+                <li><a href="../photos.html">Photos</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main Product Content -->
     <main class="product-detail">
-        <img src="assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+        <div class="product-image-container">
+            <img src="../assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+        </div>
         
         <div class="product-info">
             <h2>12ft Mobile Bar</h2>
@@ -45,19 +45,17 @@
         <div class="gallery">
             <h3>Gallery</h3>
             <div class="photo-grid">
-                <img src="assets/images/bar-detail-1.jpg" alt="Bar Front View">
-                <img src="assets/images/bar-detail-2.jpg" alt="Lighting System">
-                <img src="assets/images/bar-detail-3.jpg" alt="Setup Example">
+                <img src="../assets/images/bar-detail-1.jpg" alt="Bar Front View">
+                <img src="../assets/images/bar-detail-2.jpg" alt="Lighting System">
+                <img src="../assets/images/bar-detail-3.jpg" alt="Setup Example">
             </div>
         </div>
     </main>
 
-    <!-- Edit Lock -->
     <div class="edit-lock" id="editLock">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
     </div>
 
-    <!-- Edit Modal -->
     <div class="edit-modal" id="editModal" style="display: none;">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -73,6 +71,9 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
+    <script src="../js/product-edit.js"></script>
+</body>
+</html>
     <script src="js/product-edit.js"></script>
 </body>
 </html>
