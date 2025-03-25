@@ -6,100 +6,8 @@
     <title>TV Entertainment Package - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
-    <style>
-        /* Edit Lock Styles */
-        #editLock {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            padding: 8px;
-            z-index: 100;
-            transition: all 0.3s;
-        }
-        #editLock:hover {
-            background: rgba(0,0,0,0.7);
-        }
-        #editLock img {
-            width: 25px;
-            height: 25px;
-            display: block;
-        }
-
-        /* Modal Styles */
-        #editModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        #editTextarea {
-            width: 100%;
-            min-height: 200px;
-            margin: 15px 0;
-            padding: 12px;
-            font-family: inherit;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        #editPassword {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        #saveEdit {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        #saveEdit:hover {
-            background: #45a049;
-        }
-        #editError {
-            color: red;
-            margin: 10px 0;
-            min-height: 20px;
-        }
-    </style>
 </head>
 <body>
-    <!-- Edit Lock Button -->
-    <div id="editLock" title="Edit Description">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
-    </div>
-
     <header>
         <div class="logo">
             <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
@@ -122,7 +30,7 @@
         <div class="product-info">
             <h2>TV Entertainment Package</h2>
             <p class="price">$75/day</p>
-            <div class="description" id="product-description">
+            <div class="description">
                 Complete entertainment solution includes:
                 <ul>
                     <li>55" 4K Ultra HD Smart TV</li>
@@ -140,4 +48,11 @@
                 <img src="/assets/images/tv-detail-2.jpg" alt="Sound System">
                 <img src="/assets/images/tv-detail-3.jpg" alt="In Action">
             </div>
-        </div
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
