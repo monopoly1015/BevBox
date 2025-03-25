@@ -6,81 +6,53 @@
     <title>12ft Mobile Bar - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
-    <style>
-        /* Edit Lock Styles */
-        #editLock {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            padding: 8px;
-            z-index: 100;
-            transition: all 0.3s;
-        }
-        #editLock:hover {
-            background: rgba(0,0,0,0.7);
-        }
-        #editLock img {
-            width: 25px;
-            height: 25px;
-            display: block;
-        }
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/products.html">Products</a></li>
+                <li><a href="/inquiry.html">Inquiry</a></li>
+                <li><a href="/photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        /* Modal Styles */
-        #editModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        #editTextarea {
-            width: 100%;
-            min-height: 200px;
-            margin: 15px 0;
-            padding: 12px;
-            font-family: inherit;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        #editPassword {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        #saveEdit {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    <main class="product-detail">
+        <div class="product-image-container">
+            <img src="/assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+        </div>
+        
+        <div class="product-info">
+            <h2>12ft Collapsable Bar</h2>
+            <p class="price">$250/day</p>
+            <div class="description">
+                Professional-grade mobile bar features:
+                <ul>
+                    <li>Sturdy aluminum frame with wood finish</li>
+                    <li>Quick setup in under 10 minutes</li>
+                    <li>Built-in storage shelves</li>
+                    <li>Weather-resistant materials</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <h3>Gallery</h3>
+            <div class="photo-grid">
+                <img src="/assets/images/bar-detail-1.jpg" alt="Bar Setup">
+                <img src="/assets/images/bar-detail-2.jpg" alt="Storage Areas">
+                <img src="/assets/images/bar-detail-3.jpg" alt="In Use">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
