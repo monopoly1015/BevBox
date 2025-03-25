@@ -1,12 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>LI PartyCo - Premium Bar Experience</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LI PartyCo - Premium Bar Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Center the hero text */
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .hero h1 {
+            margin-bottom: 0;
+            font-size: 3rem;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            margin-top: 0.5em;
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        /* Improved slideshow styling */
+        .slideshow {
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        .slides {
+            width: 100%;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            text-align: center;
+        }
+        .slide img {
+            max-height: 500px;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .arrow:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        .prev {
+            left: 1rem;
+        }
+        .next {
+            right: 1rem;
+        }
+    </style>
+</head>
 <body>
     <header>
         <div class="logo">
