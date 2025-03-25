@@ -23,29 +23,59 @@
             color: #555;
         }
 
-        /* Improved slideshow styling */
+        /* Slideshow container */
         .slideshow {
+            position: relative;
             max-width: 800px;
             margin: 2rem auto;
-            position: relative;
-        }
-        .slides {
-            width: 100%;
             overflow: hidden;
         }
+
+        /* Slides container */
+        .slides {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Fixed height for consistency */
+        }
+
+        /* Individual slides */
         .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: none;
-            text-align: center;
         }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Image slides */
         .slide img {
-            max-height: 500px;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+
+        /* Video slides */
+        .video-slide {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-slide video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Navigation arrows */
         .arrow {
             position: absolute;
             top: 50%;
@@ -67,6 +97,14 @@
         }
         .next {
             right: 1rem;
+        }
+
+        /* About section */
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -93,7 +131,7 @@
     <!-- Slideshow Section -->
     <section class="slideshow">
         <div class="slides">
-            <!-- Images will be dynamically added here by JavaScript -->
+            <!-- Slides will be added dynamically by JavaScript -->
         </div>
         <!-- Navigation Arrows -->
         <button class="arrow prev" aria-label="Previous Slide">&#10094;</button>
@@ -111,6 +149,117 @@
     <footer>
         <p>&copy; 2025 LI PartyCo. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Slideshow items (images + videos)
+            const slideshowItems = [
+                { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
+                { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
+                { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' },
+                { type: 'video', src: 'promo.mp4', alt: 'Company promo video' }
+            ];
+
+            // Initialize slideshow
+            const slidesContainer = document.querySelector('.slides');
+            if (slidesContainer) {
+                // Clear existing content
+                slidesContainer.innerHTML = '';
+
+                // Create slides
+                slideshowItems.forEach((item, index) => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('slide');
+                    if (index === 0) slide.classList.add('active');
+
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        img.src = `assets/images/${item.src}`;
+                        img.alt = item.alt;
+                        img.loading = "lazy";
+                        slide.appendChild(img);
+                    } else if (item.type === 'video') {
+                        slide.classList.add('video-slide');
+                        const video = document.createElement('video');
+                        video.autoplay = true;
+                        video.muted = true;
+                        video.loop = true;
+                        video.playsinline = true;
+                        video.alt = item.alt;
+                        
+                        const source = document.createElement('source');
+                        source.src = `assets/videos/${item.src}`;
+                        source.type = 'video/mp4';
+                        
+                        video.appendChild(source);
+                        video.appendChild(document.createTextNode('Your browser does not support HTML5 video.'));
+                        slide.appendChild(video);
+                    }
+
+                    slidesContainer.appendChild(slide);
+                });
+
+                // Slideshow controls
+                const slides = document.querySelectorAll('.slide');
+                let currentSlide = 0;
+                const totalSlides = slides.length;
+                let slideInterval;
+
+                function showSlide(index) {
+                    slides.forEach(slide => {
+                        slide.classList.remove('active');
+                        // Pause any videos when not active
+                        const video = slide.querySelector('video');
+                        if (video) video.pause();
+                    });
+                    
+                    slides[index].classList.add('active');
+                    // Play video if this slide has one
+                    const video = slides[index].querySelector('video');
+                    if (video) video.play();
+                }
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    showSlide(currentSlide);
+                }
+
+                function startSlideShow() {
+                    slideInterval = setInterval(nextSlide, 5000); // 5s interval
+                }
+
+                // Initial setup
+                showSlide(currentSlide);
+                startSlideShow();
+
+                // Pause on hover
+                slidesContainer.addEventListener('mouseenter', () => {
+                    clearInterval(slideInterval);
+                    const video = slides[currentSlide].querySelector('video');
+                    if (video) video.pause();
+                });
+
+                slidesContainer.addEventListener('mouseleave', () => {
+                    startSlideShow();
+                    const video = slides[currentSlide].querySelector('video');
+                    if (video) video.play();
+                });
+
+                // Navigation arrows
+                document.querySelector('.arrow.next')?.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    nextSlide();
+                    startSlideShow();
+                });
+
+                document.querySelector('.arrow.prev')?.addEventListener('click', function() {
+                    clearInterval(slideInterval);
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    showSlide(currentSlide);
+                    startSlideShow();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
