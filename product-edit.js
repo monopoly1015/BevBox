@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionElement = document.getElementById('product-description');
 
     // Load saved description
-    const savedDesc = localStorage.getItem('product-desc-12ft-bar');
+    const savedDesc = localStorage.getItem(`product-desc-${window.location.pathname.split('/').pop().split('.')[0]}`);
     if (savedDesc) {
         descriptionElement.innerHTML = savedDesc;
     }
@@ -30,17 +30,24 @@ document.addEventListener('DOMContentLoaded', function() {
             errorMessage.textContent = 'Incorrect password';
             return;
         }
-
+        
         const newDesc = document.getElementById('editTextarea').value.trim();
         if (!newDesc) {
             errorMessage.textContent = 'Description cannot be empty';
             return;
         }
-
-        localStorage.setItem('product-desc-12ft-bar', newDesc);
+        
+        localStorage.setItem(`product-desc-${window.location.pathname.split('/').pop().split('.')[0]}`, newDesc);
         descriptionElement.innerHTML = newDesc;
         editModal.style.display = 'none';
     });
+
+    window.addEventListener('click', function(e) {
+        if (e.target === editModal) {
+            editModal.style.display = 'none';
+        }
+    });
+});
 
     window.addEventListener('click', function(e) {
         if (e.target === editModal) {
