@@ -19,19 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
         slides.forEach((slide, index) => {
             const slideEl = document.createElement('div');
             slideEl.className = 'slide';
-            slideEl.setAttribute('aria-hidden', 'true');
-            slideEl.setAttribute('role', 'group');
-            slideEl.setAttribute('aria-label', `${index + 1} of ${slides.length}`);
             
             if (slide.type === 'image') {
                 slideEl.innerHTML = `
                     <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
                 `;
             } else {
-                // Video slide with full controls
+                // Video slide with manual controls
                 slideEl.innerHTML = `
                     <div class="video-container">
-                        <video controls loop playsinline
+                        <video loop playsinline
                                aria-label="${slide.alt}">
                             <source src="assets/videos/${slide.src}" type="video/mp4">
                         </video>
@@ -48,8 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.video-play-btn').forEach(btn => {
             const video = btn.parentElement.querySelector('video');
             btn.addEventListener('click', () => {
-                video.play();
-                btn.style.display = 'none';
+                video.play().then(() => {
+                    btn.style.display = 'none';
+                    video.setAttribute('controls', ''); // Show native controls
+                }).catch(e => {
+                    console.log('Playback failed:', e);
+                });
             });
         });
     }
@@ -61,12 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide all slides
         slideElements.forEach(slide => {
             slide.classList.remove('active');
-            slide.setAttribute('aria-hidden', 'true');
             const video = slide.querySelector('video');
             if (video) {
                 video.pause();
                 video.currentTime = 0;
-                // Show play button again
+                video.removeAttribute('controls');
                 const playBtn = slide.querySelector('.video-play-btn');
                 if (playBtn) playBtn.style.display = 'block';
             }
@@ -74,43 +74,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show current slide
         slideElements[index].classList.add('active');
-        slideElements[index].setAttribute('aria-hidden', 'false');
-    }
-
-    // Start slideshow timer (without autoplay)
-    function startSlideshow() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            showSlide(currentIndex);
-        }, 5000);
     }
 
     // Initialize slideshow
     initializeSlides();
     showSlide(0);
-    startSlideshow();
 
     // Navigation controls
-    prevBtn.addEventListener('click', () => {
+    function navigate(direction) {
         clearInterval(interval);
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        currentIndex = (currentIndex + direction + slides.length) % slides.length;
         showSlide(currentIndex);
         startSlideshow();
-    });
+    }
 
-    nextBtn.addEventListener('click', () => {
-        clearInterval(interval);
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-        startSlideshow();
-    });
+    prevBtn.addEventListener('click', () => navigate(-1));
+    nextBtn.addEventListener('click', () => navigate(1));
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') prevBtn.click();
-        if (e.key === 'ArrowRight') nextBtn.click();
+        if (e.key === 'ArrowLeft') navigate(-1);
+        if (e.key === 'ArrowRight') navigate(1);
     });
+
+    // Slideshow timing (without autoplay)
+    function startSlideshow() {
+        clearInterval(interval);
+        interval = setInterval(() => navigate(1), 5000);
+    }
+    startSlideshow();
 
     // Pause on hover
     slidesContainer.addEventListener('mouseenter', () => clearInterval(interval));
