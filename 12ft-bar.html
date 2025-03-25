@@ -5,21 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12ft Mobile Bar - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header (same as before) -->
-    
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="inquiry.html">Inquiry</a></li>
+                <li><a href="photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <section class="product-detail">
-        <!-- Product content (same as before) -->
+        <img src="assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+        <h2>12ft Mobile Bar</h2>
+        <p class="price">$1,200/week</p>
+        <div class="description" id="product-description">
+            Our flagship 12-foot mobile bar with premium finishes and features:
+            <ul>
+                <li>Solid oak construction with epoxy resin finish</li>
+                <li>Built-in refrigeration system (holds 6 kegs)</li>
+                <li>LED color-changing lighting system</li>
+                <li>Stainless steel serving surface</li>
+                <li>Includes 8 bar stools</li>
+                <li>Delivery and setup included</li>
+            </ul>
+            Perfect for weddings, corporate events, and large parties.
+        </div>
+        
+        <h3>Gallery</h3>
+        <div class="photo-grid">
+            <img src="assets/images/bar-detail-1.jpg" alt="Bar Front View">
+            <img src="assets/images/bar-detail-2.jpg" alt="Lighting System">
+            <img src="assets/images/bar-detail-3.jpg" alt="Setup Example">
+        </div>
     </section>
 
-    <!-- Edit Lock (now starts closed) -->
+    <!-- Transparent Edit Lock Button -->
     <div class="edit-lock" id="editLock">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
     </div>
 
-    <!-- Edit Modal (starts hidden) -->
+    <!-- Edit Modal (hidden by default) -->
     <div class="edit-modal" id="editModal" style="display: none;">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -35,6 +68,6 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
-    <script src="../js/product-edit.js"></script>
+    <script src="js/product-edit.js"></script>
 </body>
 </html>
