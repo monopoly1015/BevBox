@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let interval;
 
-    // Create slides with proper video sound handling
+    // Create slides with proper video handling
     function initializeSlides() {
         slides.forEach((slide, index) => {
             const slideEl = document.createElement('div');
@@ -28,25 +28,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
                 `;
             } else {
-                // Video with conditional sound controls
+                // Video slide with sound handling
                 slideEl.innerHTML = `
                     <div class="video-container">
-                        <video ${slide.hasSound ? 'controls' : 'muted'} loop playsinline
-                            aria-label="${slide.alt}">
+                        <video ${slide.hasSound ? 'controls' : ''} 
+                               loop 
+                               playsinline
+                               ${!slide.hasSound ? 'muted' : ''}
+                               aria-label="${slide.alt}">
                             <source src="assets/videos/${slide.src}" type="video/mp4">
-                            Your browser does not support HTML5 video.
                         </video>
-                        ${slide.hasSound ? '<div class="sound-notice">Video contains sound - click controls to unmute</div>' : ''}
+                        ${slide.hasSound ? '<div class="sound-notice">Click video to unmute</div>' : ''}
                     </div>
                 `;
                 slideEl.classList.add('video-slide');
 
-                // Additional video setup for sound-enabled videos
+                // Setup for videos with sound
                 if (slide.hasSound) {
                     const video = slideEl.querySelector('video');
-                    video.muted = true; // Start muted for autoplay compliance
-                    video.addEventListener('play', function() {
-                        this.controls = true; // Ensure controls are visible
+                    video.muted = true; // Required for autoplay
+                    video.removeAttribute('controls'); // Start without controls
+                    
+                    video.addEventListener('click', function() {
+                        this.muted = !this.muted;
+                        this.setAttribute('controls', '');
+                        const notice = this.parentNode.querySelector('.sound-notice');
+                        if (notice) notice.style.display = 'none';
                     });
                 }
             }
@@ -55,11 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Show specific slide with video handling
+    // Show specific slide
     function showSlide(index) {
         const slideElements = document.querySelectorAll('.slide');
         
-        // Hide all slides and pause videos
+        // Hide all slides
         slideElements.forEach(slide => {
             slide.classList.remove('active');
             slide.setAttribute('aria-hidden', 'true');
@@ -67,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (video) {
                 video.pause();
                 video.currentTime = 0;
+                // Remove any existing play buttons
                 const existingBtn = slide.querySelector('.video-play-btn');
                 if (existingBtn) existingBtn.remove();
             }
@@ -77,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         slideElements[index].setAttribute('aria-hidden', 'false');
         const video = slideElements[index].querySelector('video');
         
-        // Handle video playback with sound considerations
+        // Handle video playback
         if (video) {
             const playPromise = video.play();
             
@@ -106,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Slideshow timer control
+    // Start slideshow timer
     function startSlideshow() {
         clearInterval(interval);
         interval = setInterval(() => {
@@ -137,11 +145,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') prevBtn.click();
-        if (e.key === 'ArrowRight') nextBtn.click();
+        if (e.key === 'ArrowLeft') {
+            prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+            nextBtn.click();
+        }
     });
 
     // Pause on hover
     slidesContainer.addEventListener('mouseenter', () => clearInterval(interval));
     slidesContainer.addEventListener('mouseleave', startSlideshow);
+    slidesContainer.addEventListener('focusin', () => clearInterval(interval));
+    slidesContainer.addEventListener('focusout', startSlideshow);
 });
