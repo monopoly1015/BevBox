@@ -4,74 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12ft Bar - LI PartyCo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Edit Lock Button */
+        #editLock {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #editLock img {
+            width: 30px;
+            height: 30px;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+        }
+        
+        /* Modal CSS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .close-modal {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #editTextarea {
+            width: 100%;
+            height: 150px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/products.html">Products</a></li>
-                <li><a href="/inquiry.html">Inquiry</a></li>
-                <li><a href="/photos.html">Photos</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="product-detail">
-        <div class="product-detail-image">
-            <img src="/assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+    <!-- Your existing product page content -->
+    <div class="product-detail">
+        <div style="position: relative;">
+            <div id="editLock" title="Edit Description">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0yNTYgNDhDMTc3LjYgNDggMTEyIDExMy42IDExMiAxOTJ2NDhoLTE2QzgzLjEgMjQwIDY0IDI1OS4xIDY0IDI4OHYxNjBDNjQgNDY1LjYgMTEwLjQgNTEyIDE2OCA1MTJoMTc2YzU3LjYgMCAxMDQtNDYuNCAxMDQtMTA0VjI4OGMwLTI4LjktMTkuMS00OC00OC00OGgtMTZ2LTQ4YzAtNzguNC02NS42LTE0NC0xNDQtMTQ0em0wIDE0NGMxNy43IDAgMzIgMTQuMyAzMiAzMnY0OGgtNjR2LTQ4YzAtMTcuNyAxNC4zLTMyIDMyLTMyeiIvPjwvc3ZnPg==" alt="Edit">
+            </div>
+            <img src="/assets/images/12ft-bar-product.jpg" alt="12ft Bar">
         </div>
         
-        <div class="product-info">
-            <h2>12ft Mobile Bar</h2>
-            <p class="price">$250/day</p>
-            <div class="description" id="product-description">
-                Premium mobile bar package includes:
-                <ul>
-                    <li>12-foot premium finished bar</li>
-                    <li>Built-in sound system</li>
-                    <li>LED color-changing speaker lighting</li>
-                    <li>LED Dimmable warm accent lighting</li>
-                    <li>Includes 25quart ice bin</li>
-                </ul>
-            </div>
+        <div id="product-description">
+            <!-- Editable description will go here -->
+            Default description...
         </div>
-
-        <div class="detail-gallery">
-            <h3>Gallery</h3>
-            <div class="detail-grid">
-                <img src="/assets/images/bar-detail-1.jpg" alt="Bar Front View">
-                <img src="/assets/images/bar-detail-2.jpg" alt="Lighting System">
-                <img src="/assets/images/bar-detail-3.jpg" alt="Setup Example">
-            </div>
-        </div>
-    </main>
-
-    <!-- Edit Lock Button -->
-    <div class="edit-lock" id="editLock">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit Icon">
     </div>
 
     <!-- Edit Modal -->
-    <div class="edit-modal" id="editModal">
+    <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h3>Edit Description</h3>
-            <textarea id="editTextarea" rows="6"></textarea>
-            <input type="password" id="editPassword" placeholder="Enter password">
+            <input type="password" id="editPassword" placeholder="Enter admin password">
+            <p id="editError" class="error"></p>
+            <textarea id="editTextarea"></textarea>
             <button id="saveEdit">Save Changes</button>
-            <p id="editError" style="color:red;"></p>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
-    </footer>
 
     <script src="/js/product-edit.js"></script>
 </body>
