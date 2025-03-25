@@ -16,19 +16,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize slideshow
-    const shuffledImages = shuffleArray([...imageFiles]); // Create a copy
+    const shuffledImages = shuffleArray([...imageFiles]);
     const slidesContainer = document.querySelector('.slides');
-    slidesContainer.innerHTML = ''; // Clear any existing slides
+    slidesContainer.innerHTML = '';
 
     // Create slides
     shuffledImages.forEach((imageFile, index) => {
         const slide = document.createElement('div');
         slide.classList.add('slide');
-        
+        if (index === 0) {
+            slide.style.display = 'block';
+            slide.classList.add('active');
+        } else {
+            slide.style.display = 'none';
+        }
+
         const img = document.createElement('img');
         img.src = `assets/images/${imageFile}`;
-        img.alt = `Event Photo ${index + 1}`;
-        
+        img.alt = `Event Image ${index + 1}`;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+
         slide.appendChild(img);
         slidesContainer.appendChild(slide);
     });
@@ -36,22 +45,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Slideshow functionality
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
-    slides[currentSlide].classList.add('active');
+    const totalSlides = slides.length;
 
     function showSlide(index) {
         slides.forEach(slide => {
+            slide.style.display = 'none';
             slide.classList.remove('active');
         });
+        
+        slides[index].style.display = 'block';
         slides[index].classList.add('active');
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
+        currentSlide = (currentSlide + 1) % totalSlides;
         showSlide(currentSlide);
     }
 
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         showSlide(currentSlide);
     }
 
