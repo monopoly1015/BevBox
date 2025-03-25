@@ -1,65 +1,77 @@
 document.addEventListener('DOMContentLoaded', function() {
     const PASSWORD = "TheLongIslandPartyCompany2025";
-    const elements = {
-        lock: document.getElementById('editLock'),
-        modal: document.getElementById('editModal'),
-        close: document.querySelector('.close-modal'),
-        save: document.getElementById('saveEdit'),
-        input: document.getElementById('editPassword'),
-        error: document.getElementById('editError'),
-        desc: document.getElementById('product-description'),
-        textarea: document.getElementById('editTextarea')
-    };
+    const editLock = document.getElementById('editLock');
+    const editModal = document.getElementById('editModal');
+    
+    if (!editLock || !editModal) {
+        console.error('Edit elements missing');
+        return;
+    }
 
-    // Debugging
-    console.log('Edit system elements:', elements);
-    if (!elements.lock) return console.error('Edit lock not found');
+    // Create lock icon if missing
+    if (!editLock.querySelector('img')) {
+        const lockImg = document.createElement('img');
+        lockImg.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+';
+        lockImg.alt = 'Edit';
+        lockImg.style.width = '30px';
+        lockImg.style.height = '30px';
+        editLock.appendChild(lockImg);
+    }
+
+    const modal = {
+        close: editModal.querySelector('.close-modal'),
+        save: editModal.querySelector('#saveEdit'),
+        input: editModal.querySelector('#editPassword'),
+        error: editModal.querySelector('#editError'),
+        textarea: editModal.querySelector('#editTextarea')
+    };
 
     // Load saved description
     const productId = window.location.pathname.split('/').pop().split('.')[0];
+    const description = document.getElementById('product-description');
     const savedDesc = localStorage.getItem(`product-desc-${productId}`);
-    if (savedDesc && elements.desc) {
-        elements.desc.innerHTML = savedDesc;
+    if (savedDesc && description) {
+        description.innerHTML = savedDesc;
     }
 
-    // Lock click handler
-    elements.lock.addEventListener('click', function(e) {
+    // Edit lock click
+    editLock.addEventListener('click', function(e) {
         e.preventDefault();
-        elements.modal.style.display = 'flex';
-        if (elements.textarea && elements.desc) {
-            elements.textarea.value = elements.desc.textContent;
+        editModal.style.display = 'flex';
+        if (modal.textarea && description) {
+            modal.textarea.value = description.textContent;
         }
     });
 
     // Close modal
-    elements.close.addEventListener('click', () => {
-        elements.modal.style.display = 'none';
+    modal.close.addEventListener('click', function() {
+        editModal.style.display = 'none';
     });
 
-    // Save handler
-    elements.save.addEventListener('click', () => {
-        if (!elements.input || !elements.textarea) return;
+    // Save changes
+    modal.save.addEventListener('click', function() {
+        if (!modal.input || !modal.textarea) return;
         
-        if (elements.input.value !== PASSWORD) {
-            if (elements.error) elements.error.textContent = 'Incorrect password';
+        if (modal.input.value !== PASSWORD) {
+            modal.error.textContent = 'Incorrect password';
             return;
         }
         
-        const newDesc = elements.textarea.value.trim();
+        const newDesc = modal.textarea.value.trim();
         if (!newDesc) {
-            if (elements.error) elements.error.textContent = 'Description required';
+            modal.error.textContent = 'Description cannot be empty';
             return;
         }
         
         localStorage.setItem(`product-desc-${productId}`, newDesc);
-        if (elements.desc) elements.desc.innerHTML = newDesc;
-        elements.modal.style.display = 'none';
+        if (description) description.innerHTML = newDesc;
+        editModal.style.display = 'none';
     });
 
     // Close when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === elements.modal) {
-            elements.modal.style.display = 'none';
+    window.addEventListener('click', function(e) {
+        if (e.target === editModal) {
+            editModal.style.display = 'none';
         }
     });
 });
