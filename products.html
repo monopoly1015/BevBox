@@ -7,12 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
-        /* Critical inline CSS to force image display */
+        /* Critical CSS to force image display */
         .product-image-container {
             position: relative;
             width: 100%;
-            padding-bottom: 75%; /* 4:3 aspect ratio */
-            background-color: #f5f5f5;
+            aspect-ratio: 4/3; /* Modern browsers */
+            padding-bottom: 75%; /* Fallback for older browsers */
+            background: #f5f5f5 url('/assets/images/image-placeholder.svg') center/contain no-repeat;
             overflow: hidden;
         }
         .product-image-container img {
@@ -23,7 +24,10 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            display: block !important;
+            transition: opacity 0.3s ease;
+        }
+        .product-image-container img.hidden {
+            opacity: 0;
         }
     </style>
 </head>
@@ -34,14 +38,10 @@
             <article class="product-card">
                 <a href="/12ft-bar.html" class="product-link">
                     <div class="product-image-container">
-                        <!-- Fallback order: WebP -> JPG -> SVG placeholder -->
-                        <picture>
-                            <source srcset="/assets/images/12ft-bar-product.webp" type="image/webp">
-                            <img src="/assets/images/12ft-bar-product.jpg" 
-                                 alt="12ft Mobile Bar" 
-                                 loading="lazy"
-                                 onerror="this.src='/assets/images/image-placeholder.svg'">
-                        </picture>
+                        <img src="/assets/images/12ft-bar-product.jpg" 
+                             alt="12ft Mobile Bar" 
+                             loading="lazy"
+                             onerror="this.classList.add('hidden')">
                     </div>
                     <div class="product-info">
                         <h3>12ft Collapsable Bar</h3>
@@ -53,13 +53,10 @@
             <article class="product-card">
                 <a href="/tv-package.html" class="product-link">
                     <div class="product-image-container">
-                        <picture>
-                            <source srcset="/assets/images/tv-product.webp" type="image/webp">
-                            <img src="/assets/images/tv-product.jpg" 
-                                 alt="TV Entertainment Package" 
-                                 loading="lazy"
-                                 onerror="this.src='/assets/images/image-placeholder.svg'">
-                        </picture>
+                        <img src="/assets/images/tv-product.jpg" 
+                             alt="TV Entertainment Package" 
+                             loading="lazy"
+                             onerror="this.classList.add('hidden')">
                     </div>
                     <div class="product-info">
                         <h3>Entertainment Package</h3>
@@ -71,15 +68,18 @@
     </main>
 
     <script>
-        // Nuclear option - forces image reload if still not showing
+        // Nuclear fallback - checks if images actually loaded
         document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.product-image-container img');
-            images.forEach(img => {
+            document.querySelectorAll('.product-image-container img').forEach(img => {
+                // If naturalHeight is 0, image failed to load
                 if(img.complete && img.naturalHeight === 0) {
-                    const src = img.src;
-                    img.src = '';
-                    img.src = src;
+                    img.classList.add('hidden');
                 }
+                
+                // Additional check for slow-loading images
+                img.addEventListener('error', function() {
+                    this.classList.add('hidden');
+                });
             });
         });
     </script>
