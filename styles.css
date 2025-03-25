@@ -1,12 +1,12 @@
 :root {
-  --primary: #E31B23; /* Vibrant red */
-  --secondary: #001F3F; /* Navy blue */
-  --accent: #FFFFFF; /* White */
-  --highlight: #FFD700; /* Gold */
-  --text: #333333; /* Dark gray */
+  --primary: rgba(227, 27, 35, 0.8); /* 80% opaque red */
+  --secondary: rgba(0, 31, 63, 0.7); /* 70% opaque navy */
+  --accent: #FFFFFF;
+  --highlight: #FFD700;
+  --text: #333333;
+  --light-blue: rgba(100, 180, 255, 0.5); /* 50% transparent light blue */
 }
 
-/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +23,6 @@ body {
   flex-direction: column;
 }
 
-/* Header */
 header {
   background: var(--secondary);
   padding: 1rem 2rem;
@@ -37,7 +36,7 @@ header {
 }
 
 .logo img {
-  height: 100px; /* Larger logo */
+  height: 100px;
   transition: transform 0.3s ease;
 }
 
@@ -45,10 +44,9 @@ header {
   transform: scale(1.05);
 }
 
-/* Navigation */
 nav ul {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   list-style: none;
 }
 
@@ -57,14 +55,13 @@ nav a {
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   padding: 0.75rem 1.25rem;
   border-radius: 50px;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
 }
 
 nav a:hover {
@@ -73,10 +70,11 @@ nav a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), 
-              url('assets/images/hero-bg.jpg') center/cover no-repeat;
+  background: 
+    linear-gradient(var(--light-blue),
+    linear-gradient(var(--secondary))),
+    url('assets/images/hero-bg.jpg') center/cover no-repeat;
   height: 60vh;
   display: flex;
   flex-direction: column;
@@ -98,7 +96,6 @@ nav a:hover {
   max-width: 800px;
 }
 
-/* Products Grid */
 .products {
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -138,7 +135,6 @@ nav a:hover {
   text-align: center;
 }
 
-/* Product Detail Page */
 .product-detail {
   padding: 4rem 2rem;
   max-width: 1000px;
@@ -170,7 +166,6 @@ nav a:hover {
   margin-bottom: 2rem;
 }
 
-/* Gallery */
 .gallery {
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -195,7 +190,6 @@ nav a:hover {
   transform: scale(1.03);
 }
 
-/* Footer */
 footer {
   background: var(--secondary);
   color: var(--accent);
@@ -204,12 +198,11 @@ footer {
   margin-top: auto;
 }
 
-/* Edit Lock */
 .edit-lock {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: var(--primary);
+  background: rgba(227, 27, 35, 0.3);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -217,12 +210,14 @@ footer {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1000;
   transition: all 0.3s ease;
 }
 
 .edit-lock:hover {
+  background: rgba(227, 27, 35, 0.5);
   transform: scale(1.1);
 }
 
@@ -231,39 +226,152 @@ footer {
   height: 25px;
 }
 
-/* Mobile Responsiveness */
+.edit-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1001;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--accent);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  border: 2px solid var(--primary);
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal-content h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+#editTextarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--text);
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 150px;
+}
+
+#editPassword {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--text);
+  border-radius: 6px;
+}
+
+#saveEdit {
+  background: var(--primary);
+  color: var(--accent);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+#saveEdit:hover {
+  background: #c5161d;
+  transform: translateY(-2px);
+}
+
+#editError {
+  color: var(--primary);
+  text-align: center;
+  margin-top: 1rem;
+  min-height: 1.5rem;
+}
+
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
     padding: 1rem;
-  }
-  
-  nav ul {
     flex-direction: column;
+  }
+
+  nav ul {
+    display: flex !important;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    width: 100%;
+    justify-content: center;
     margin-top: 1rem;
   }
-  
+
   nav a {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
-  
+
   .hero h1 {
     font-size: 2.5rem;
   }
-  
+
   .hero p {
     font-size: 1.2rem;
   }
-  
-  .photo-grid {
-    grid-template-columns: 1fr;
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    gap: 0.3rem;
   }
-  
-  .product-grid {
-    grid-template-columns: 1fr;
+
+  nav a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .hero {
+    height: 50vh;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .edit-lock {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .edit-lock img {
+    width: 20px;
+    height: 20px;
   }
 }
