@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preload images with absolute paths
     const basePath = window.location.origin;
     const images = [
-        `${basePath}/assets/images/barphoto.jpg`,
+        `${basePath}/assets/images/barphoto1.jpg`,
         `${basePath}/assets/images/tvphoto.jpg`
     ];
 
