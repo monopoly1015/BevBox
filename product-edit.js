@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const CORRECT_PASSWORD = "TheLongIslandPartyCompany2025";
     const editLock = document.getElementById('editLock');
     const editModal = document.getElementById('editModal');
+    
+    if (!editLock || !editModal) return; // Safety check
+
     const closeModal = document.querySelector('.close-modal');
     const saveButton = document.getElementById('saveEdit');
     const passwordInput = document.getElementById('editPassword');
@@ -14,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         descriptionElement.innerHTML = savedDesc;
     }
 
-    editLock.addEventListener('click', function() {
+    editLock.addEventListener('click', function(e) {
+        e.stopPropagation();
         editModal.style.display = 'flex';
         document.getElementById('editTextarea').value = descriptionElement.textContent;
         passwordInput.value = '';
