@@ -37,7 +37,7 @@ header {
 }
 
 .logo img {
-  height: 60px; /* Proper logo size */
+  height: 60px;
   width: auto;
   transition: transform 0.3s ease;
 }
@@ -69,7 +69,62 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-/* ===== PRODUCT PAGES ===== */
+/* ===== PRODUCTS PAGE ===== */
+.products {
+  padding: 2rem;
+}
+
+.products h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--secondary);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+  transform: scale(1.05);
+}
+
+.product-card h3 {
+  padding: 1rem;
+  text-align: center;
+  color: var(--secondary);
+}
+
+/* ===== PRODUCT DETAIL PAGES ===== */
 .product-detail {
   padding: 2rem 1.5rem;
   max-width: 1000px;
@@ -77,13 +132,10 @@ nav a:hover {
   width: 100%;
 }
 
-.product-detail > img {
+.product-detail > .product-image-container {
   width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
+  max-height: 400px;
   margin-bottom: 1.5rem;
-  display: block;
 }
 
 .product-info {
@@ -138,55 +190,57 @@ nav a:hover {
   transform: scale(1.02);
 }
 
-/* ===== EDIT LOCK ===== */
+/* ===== EDIT LOCK BUTTON ===== */
 .edit-lock {
+  display: flex !important;
   position: fixed;
   bottom: 25px;
   right: 25px;
-  background: rgba(227, 27, 35, 0.85);
+  background: var(--primary);
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border: none;
+  padding: 0;
   transition: all 0.3s ease;
 }
 
 .edit-lock:hover {
-  background: rgba(227, 27, 35, 1);
   transform: scale(1.1);
+  background: #c5161d;
 }
 
 .edit-lock img {
   width: 25px;
   height: 25px;
+  pointer-events: none;
 }
 
 /* ===== EDIT MODAL ===== */
 .edit-modal {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1001;
+  background: rgba(0,0,0,0.8);
+  display: none;
   align-items: center;
   justify-content: center;
+  z-index: 1001;
 }
 
 .modal-content {
-  background: var(--accent);
+  background: white;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
 }
 
@@ -278,17 +332,21 @@ footer {
     font-size: 0.85rem;
   }
 
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .product-image-container {
+    height: 200px;
+  }
+
   .product-detail {
     padding: 1.5rem 1rem;
   }
 
-  .product-detail > img {
-    max-height: 220px;
-  }
-
   .photo-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
   }
 }
 
@@ -309,116 +367,4 @@ footer {
   .photo-grid {
     grid-template-columns: 1fr;
   }
-}
-/* Add these to your existing styles.css */
-.product-image-container {
-    width: 100%;
-    max-height: 400px;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.product-image-container img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.edit-lock {
-    display: flex !important;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: rgba(227, 27, 35, 0.85);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.edit-lock:hover {
-    background: rgba(227, 27, 35, 1);
-    transform: scale(1.1);
-}
-
-.edit-lock img {
-    width: 25px;
-    height: 25px;
-}
-/* Add these to your existing styles */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-}
-
-.product-card {
-    text-decoration: none;
-    color: var(--text);
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
-.product-image-container {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(0,0,0,0.1);
-}
-
-.product-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-image-container img {
-    transform: scale(1.05);
-}
-
-/* Fix for edit lock button */
-.edit-lock {
-    display: flex !important;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: rgba(227, 27, 35, 0.9);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.edit-lock:hover {
-    background: rgba(227, 27, 35, 1);
-    transform: scale(1.1);
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .product-image-container {
-        height: 200px;
-    }
 }
