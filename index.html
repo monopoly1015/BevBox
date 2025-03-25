@@ -29,13 +29,15 @@
             max-width: 800px;
             margin: 2rem auto;
             overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Slides container */
         .slides {
             position: relative;
             width: 100%;
-            height: 450px; /* Fixed height for consistency */
+            height: 450px; /* Fixed height */
         }
 
         /* Individual slides */
@@ -55,24 +57,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
         }
 
         /* Video slides */
-        .video-slide {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-        }
-
         .video-slide video {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
         }
 
         /* Navigation arrows */
@@ -97,14 +88,6 @@
         }
         .next {
             right: 1rem;
-        }
-
-        /* About section */
-        .about {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
         }
     </style>
 </head>
@@ -131,11 +114,10 @@
     <!-- Slideshow Section -->
     <section class="slideshow">
         <div class="slides">
-            <!-- Slides will be added dynamically by JavaScript -->
+            <!-- Slides will be added by JavaScript -->
         </div>
-        <!-- Navigation Arrows -->
-        <button class="arrow prev" aria-label="Previous Slide">&#10094;</button>
-        <button class="arrow next" aria-label="Next Slide">&#10095;</button>
+        <button class="arrow prev">&#10094;</button>
+        <button class="arrow next">&#10095;</button>
     </section>
 
     <section class="about">
@@ -152,18 +134,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Slideshow items (images + videos)
+            // Slideshow configuration
             const slideshowItems = [
                 { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
                 { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
-                { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' },
-                { type: 'video', src: 'promo.mp4', alt: 'Company promo video' }
+                { type: 'video', src: 'promo.mp4', alt: 'Company promo' },
+                { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' }
             ];
 
             // Initialize slideshow
             const slidesContainer = document.querySelector('.slides');
             if (slidesContainer) {
-                // Clear existing content
                 slidesContainer.innerHTML = '';
 
                 // Create slides
@@ -178,14 +159,13 @@
                         img.alt = item.alt;
                         img.loading = "lazy";
                         slide.appendChild(img);
-                    } else if (item.type === 'video') {
-                        slide.classList.add('video-slide');
+                    } 
+                    else if (item.type === 'video') {
                         const video = document.createElement('video');
                         video.autoplay = true;
                         video.muted = true;
                         video.loop = true;
                         video.playsinline = true;
-                        video.alt = item.alt;
                         
                         const source = document.createElement('source');
                         source.src = `assets/videos/${item.src}`;
@@ -194,6 +174,7 @@
                         video.appendChild(source);
                         video.appendChild(document.createTextNode('Your browser does not support HTML5 video.'));
                         slide.appendChild(video);
+                        slide.classList.add('video-slide');
                     }
 
                     slidesContainer.appendChild(slide);
@@ -206,17 +187,15 @@
                 let slideInterval;
 
                 function showSlide(index) {
-                    slides.forEach(slide => {
-                        slide.classList.remove('active');
-                        // Pause any videos when not active
-                        const video = slide.querySelector('video');
-                        if (video) video.pause();
-                    });
-                    
+                    slides.forEach(slide => slide.classList.remove('active'));
                     slides[index].classList.add('active');
-                    // Play video if this slide has one
+                    
+                    // Handle video playback
                     const video = slides[index].querySelector('video');
-                    if (video) video.play();
+                    if (video) {
+                        video.currentTime = 0;
+                        video.play().catch(e => console.log('Video play prevented:', e));
+                    }
                 }
 
                 function nextSlide() {
@@ -225,11 +204,11 @@
                 }
 
                 function startSlideShow() {
-                    slideInterval = setInterval(nextSlide, 5000); // 5s interval
+                    slideInterval = setInterval(nextSlide, 5000);
                 }
 
                 // Initial setup
-                showSlide(currentSlide);
+                showSlide(0);
                 startSlideShow();
 
                 // Pause on hover
@@ -239,20 +218,16 @@
                     if (video) video.pause();
                 });
 
-                slidesContainer.addEventListener('mouseleave', () => {
-                    startSlideShow();
-                    const video = slides[currentSlide].querySelector('video');
-                    if (video) video.play();
-                });
+                slidesContainer.addEventListener('mouseleave', startSlideShow);
 
                 // Navigation arrows
-                document.querySelector('.arrow.next')?.addEventListener('click', () => {
+                document.querySelector('.arrow.next').addEventListener('click', () => {
                     clearInterval(slideInterval);
                     nextSlide();
                     startSlideShow();
                 });
 
-                document.querySelector('.arrow.prev')?.addEventListener('click', function() {
+                document.querySelector('.arrow.prev').addEventListener('click', () => {
                     clearInterval(slideInterval);
                     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
                     showSlide(currentSlide);
