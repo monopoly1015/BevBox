@@ -1,71 +1,65 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const CORRECT_PASSWORD = "TheLongIslandPartyCompany2025";
-    const editLock = document.getElementById('editLock');
-    const editModal = document.getElementById('editModal');
+    const PASSWORD = "TheLongIslandPartyCompany2025";
+    const elements = {
+        lock: document.getElementById('editLock'),
+        modal: document.getElementById('editModal'),
+        close: document.querySelector('.close-modal'),
+        save: document.getElementById('saveEdit'),
+        input: document.getElementById('editPassword'),
+        error: document.getElementById('editError'),
+        desc: document.getElementById('product-description'),
+        textarea: document.getElementById('editTextarea')
+    };
 
-    if (!editLock || !editModal) {
-        console.error('Edit elements not found');
-        return;
-    }
-
-    const closeModal = editModal.querySelector('.close-modal');
-    const saveButton = document.getElementById('saveEdit');
-    const passwordInput = document.getElementById('editPassword');
-    const errorMessage = document.getElementById('editError');
-    const descriptionElement = document.getElementById('product-description');
-    const editTextarea = document.getElementById('editTextarea');
+    // Debugging
+    console.log('Edit system elements:', elements);
+    if (!elements.lock) return console.error('Edit lock not found');
 
     // Load saved description
     const productId = window.location.pathname.split('/').pop().split('.')[0];
     const savedDesc = localStorage.getItem(`product-desc-${productId}`);
-    if (savedDesc && descriptionElement) {
-        descriptionElement.innerHTML = savedDesc;
+    if (savedDesc && elements.desc) {
+        elements.desc.innerHTML = savedDesc;
     }
 
-    // Edit lock button
-    editLock.addEventListener('click', function(e) {
+    // Lock click handler
+    elements.lock.addEventListener('click', function(e) {
         e.preventDefault();
-        editModal.style.display = 'flex';
-        if (editTextarea && descriptionElement) {
-            editTextarea.value = descriptionElement.textContent;
+        elements.modal.style.display = 'flex';
+        if (elements.textarea && elements.desc) {
+            elements.textarea.value = elements.desc.textContent;
         }
-        if (passwordInput) passwordInput.value = '';
-        if (errorMessage) errorMessage.textContent = '';
     });
 
     // Close modal
-    if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            editModal.style.display = 'none';
-        });
-    }
+    elements.close.addEventListener('click', () => {
+        elements.modal.style.display = 'none';
+    });
 
-    // Save changes
-    if (saveButton) {
-        saveButton.addEventListener('click', function() {
-            if (!passwordInput || !editTextarea || !descriptionElement || !errorMessage) return;
-            
-            if (passwordInput.value !== CORRECT_PASSWORD) {
-                errorMessage.textContent = 'Incorrect password';
-                return;
-            }
-            
-            const newDesc = editTextarea.value.trim();
-            if (!newDesc) {
-                errorMessage.textContent = 'Description cannot be empty';
-                return;
-            }
-            
-            localStorage.setItem(`product-desc-${productId}`, newDesc);
-            descriptionElement.innerHTML = newDesc;
-            editModal.style.display = 'none';
-        });
-    }
+    // Save handler
+    elements.save.addEventListener('click', () => {
+        if (!elements.input || !elements.textarea) return;
+        
+        if (elements.input.value !== PASSWORD) {
+            if (elements.error) elements.error.textContent = 'Incorrect password';
+            return;
+        }
+        
+        const newDesc = elements.textarea.value.trim();
+        if (!newDesc) {
+            if (elements.error) elements.error.textContent = 'Description required';
+            return;
+        }
+        
+        localStorage.setItem(`product-desc-${productId}`, newDesc);
+        if (elements.desc) elements.desc.innerHTML = newDesc;
+        elements.modal.style.display = 'none';
+    });
 
     // Close when clicking outside
-    window.addEventListener('click', function(e) {
-        if (e.target === editModal) {
-            editModal.style.display = 'none';
+    window.addEventListener('click', (e) => {
+        if (e.target === elements.modal) {
+            elements.modal.style.display = 'none';
         }
     });
 });
