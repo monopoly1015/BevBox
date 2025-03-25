@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - LI PartyCo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="inquiry.html">Inquiry</a></li>
+                <li><a href="photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <!-- 12ft Bar Product -->
+            <div class="product-card" data-product="12ft-bar">
+                <img src="assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar">
+                <h3>12ft Collapsable Bar</h3>
+                <p class="price">$250/day</p>
+                <div class="description" id="desc-12ft-bar">
+                    Our flagship 12-foot mobile bar with premium finishes, built-in sound system, and LED lighting. Perfect for large events.
+                </div>
+            </div>
+
+            <!-- TV Product -->
+            <div class="product-card" data-product="tv">
+                <img src="assets/images/tv-product.jpg" alt="TV Entertainment Package">
+                <h3>Entertainment Package</h3>
+                <p class="price">$75/day</p>
+                <div class="description" id="desc-tv">
+                    55" 4K TV with premium sound system and streaming capabilities. Great for sports viewing, parties and outdoor events.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Modal -->
+    <div class="edit-modal" id="editModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Edit Description</h3>
+            <textarea id="editTextarea" rows="6"></textarea>
+            <input type="password" id="editPassword" placeholder="Enter password">
+            <button id="saveEdit">Save Changes</button>
+            <p id="editError"></p>
+        </div>
+    </div>
+
+    <!-- Lock Icon for Editing -->
+    <div class="edit-lock" id="editLock">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MEM2NCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
+    </div>
+
+    <footer>
+        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
+    </footer>
+
+    <script src="products.js"></script>
+</body>
+</html>
