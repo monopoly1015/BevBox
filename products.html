@@ -7,34 +7,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
-        /* Temporary debug */
-        body.debug .product-image-container {
-            border: 2px dashed red;
+        /* Critical inline CSS to force image display */
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* 4:3 aspect ratio */
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .product-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block !important;
         }
     </style>
 </head>
-<body class="debug">
-    <header>
-        <div class="logo">
-            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/products.html">Products</a></li>
-                <li><a href="/inquiry.html">Inquiry</a></li>
-                <li><a href="/photos.html">Photos</a></li>
-            </ul>
-        </nav>
-    </header>
-
+<body>
     <main class="products-container">
         <h1>Our Rentals</h1>
         <div class="products-grid">
             <article class="product-card">
                 <a href="/12ft-bar.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="/assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar" loading="lazy">
+                        <!-- Fallback order: WebP -> JPG -> SVG placeholder -->
+                        <picture>
+                            <source srcset="/assets/images/12ft-bar-product.webp" type="image/webp">
+                            <img src="/assets/images/12ft-bar-product.jpg" 
+                                 alt="12ft Mobile Bar" 
+                                 loading="lazy"
+                                 onerror="this.src='/assets/images/image-placeholder.svg'">
+                        </picture>
                     </div>
                     <div class="product-info">
                         <h3>12ft Collapsable Bar</h3>
@@ -46,7 +53,13 @@
             <article class="product-card">
                 <a href="/tv-package.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="/assets/images/tv-product.jpg" alt="TV Entertainment Package" loading="lazy">
+                        <picture>
+                            <source srcset="/assets/images/tv-product.webp" type="image/webp">
+                            <img src="/assets/images/tv-product.jpg" 
+                                 alt="TV Entertainment Package" 
+                                 loading="lazy"
+                                 onerror="this.src='/assets/images/image-placeholder.svg'">
+                        </picture>
                     </div>
                     <div class="product-info">
                         <h3>Entertainment Package</h3>
@@ -57,10 +70,18 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
-    </footer>
-
-    <script src="/js/products.js"></script>
+    <script>
+        // Nuclear option - forces image reload if still not showing
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.product-image-container img');
+            images.forEach(img => {
+                if(img.complete && img.naturalHeight === 0) {
+                    const src = img.src;
+                    img.src = '';
+                    img.src = src;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
