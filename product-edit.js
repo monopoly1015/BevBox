@@ -48,10 +48,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-    window.addEventListener('click', function(e) {
-        if (e.target === editModal) {
-            editModal.style.display = 'none';
-        }
-    });
-});
