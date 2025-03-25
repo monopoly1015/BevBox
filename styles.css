@@ -542,3 +542,38 @@ footer p {
     display: block;
   }
 }
+/* ===== PRODUCT IMAGE FIXES ===== */
+.product-image-container {
+    width: 100%;
+    height: 300px; /* Fixed height */
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Critical for desktop */
+    transition: transform 0.3s ease;
+}
+
+/* Firefox Fix */
+@-moz-document url-prefix() {
+    .product-image-container {
+        display: flex;
+    }
+}
+
+/* ===== DESKTOP/MOBILE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .product-image-container {
+        height: 250px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+}
