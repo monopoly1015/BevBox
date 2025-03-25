@@ -1,21 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Preload images
-    const imageUrls = [
+    const images = [
         '/assets/images/12ft-bar-product.jpg',
         '/assets/images/tv-product.jpg'
     ];
 
-    imageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
-        img.onerror = () => console.error('Failed to load:', url);
+    images.forEach(src => {
+        new Image().src = src;
     });
 
-    // Debugging
+    // Verify image loading
     document.querySelectorAll('.product-image-container img').forEach(img => {
-        img.onerror = () => {
-            console.error('Broken image:', img.src);
-            img.parentElement.style.backgroundColor = 'rgba(255,0,0,0.1)';
+        img.onerror = function() {
+            console.error('Failed to load image:', this.src);
+            this.style.display = 'none';
+            this.parentElement.style.background = `url('/assets/images/image-placeholder.svg') center/contain no-repeat`;
         };
     });
 });
