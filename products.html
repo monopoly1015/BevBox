@@ -7,16 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
-        /* Add these styles to fix image display */
+        /* Image container styling */
         .product-image-container {
-            height: 250px; /* Fixed height */
+            height: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
             background: #f5f5f5;
-            overflow: hidden; /* Prevent overflow */
             border-radius: 8px;
             margin-bottom: 1rem;
+            overflow: hidden;
+            position: relative;
         }
         
         .product-image-container img {
@@ -32,9 +33,22 @@
             transform: scale(1.03);
         }
         
+        /* Debug overlay */
+        .debug-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 5px;
+            font-size: 11px;
+        }
+        
         /* Fallback for broken images */
-        .product-image-container img[src*=".jpg"]:not([src]) {
-            background: url('/assets/images/image-placeholder.svg') center/contain no-repeat;
+        .image-error {
+            color: red;
+            padding: 10px;
+            border: 2px dashed red;
         }
     </style>
 </head>
@@ -62,7 +76,9 @@
                         <img src="/assets/images/products/barphoto1.jpg" 
                              alt="12ft Mobile Bar"
                              loading="lazy"
-                             onerror="this.onerror=null;this.src='/assets/images/image-placeholder.svg'">
+                             data-filename="barphoto1.jpg"
+                             onerror="handleImageError(this)">
+                        <div class="debug-info">barphoto1.jpg</div>
                     </div>
                     <div class="product-info">
                         <h3>12ft Collapsable Bar</h3>
@@ -75,9 +91,11 @@
                 <a href="/tv-package.html" class="product-link">
                     <div class="product-image-container">
                         <img src="/assets/images/products/tvphoto.jpg" 
-                             alt="Entertainment Package"
+                             alt="TV Entertainment Package"
                              loading="lazy"
-                             onerror="this.onerror=null;this.src='/assets/images/image-placeholder.svg'">
+                             data-filename="tvphoto.jpg"
+                             onerror="handleImageError(this)">
+                        <div class="debug-info">tvphoto.jpg</div>
                     </div>
                     <div class="product-info">
                         <h3>Entertainment Package</h3>
@@ -92,15 +110,43 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
-    <!-- Debug script -->
     <script>
+        function handleImageError(img) {
+            console.error('Image failed to load:', img.src);
+            
+            // Create error message
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'image-error';
+            errorMsg.textContent = `Failed to load: ${img.dataset.filename}`;
+            img.parentElement.appendChild(errorMsg);
+            
+            // Try alternative paths
+            const alternatives = [
+                `/assets/images/products/${img.dataset.filename}`,
+                `assets/images/products/${img.dataset.filename}`,
+                `https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/assets/images/products/${img.dataset.filename}`
+            ];
+            
+            for (let path of alternatives) {
+                const testImg = new Image();
+                testImg.onload = function() {
+                    img.src = path;
+                    console.log('Loaded successfully from:', path);
+                };
+                testImg.src = path;
+            }
+        }
+
+        // Verify images on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if images are loading
             const images = document.querySelectorAll('.product-image-container img');
             images.forEach(img => {
+                // Add cache busting
+                img.src = img.src + '?v=' + Date.now();
+                
+                // Check if loaded
                 if (!img.complete || img.naturalWidth === 0) {
-                    console.warn('Image failed to load:', img.src);
-                    img.src = '/assets/images/image-placeholder.svg';
+                    console.warn('Image may not load:', img.src);
                 }
             });
         });
