@@ -8,17 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Shuffle array function
     function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
         }
-        return array;
+        return newArray;
     }
 
     // Initialize slideshow
     const slidesContainer = document.querySelector('.slides');
     if (slidesContainer) {
-        const shuffledImages = shuffleArray([...imageFiles]);
+        const shuffledImages = shuffleArray(imageFiles);
         slidesContainer.innerHTML = '';
 
         // Create slides
@@ -31,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
             img.src = `assets/images/${imageFile}`;
             img.alt = `Event Image ${index + 1}`;
             img.loading = "lazy";
+            img.style.display = 'block';
+            img.style.margin = '0 auto';
+            img.style.maxHeight = '500px';
+            img.style.width = 'auto';
             slide.appendChild(img);
             slidesContainer.appendChild(slide);
         });
@@ -39,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const totalSlides = slides.length;
+        let slideInterval;
 
         function showSlide(index) {
             slides.forEach(slide => {
@@ -52,23 +58,33 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(currentSlide);
         }
 
-        // Auto-advance and controls
-        let slideInterval = setInterval(nextSlide, 5000);
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Initial setup
+        showSlide(currentSlide);
+        startSlideShow();
 
         // Pause on hover
         slidesContainer.addEventListener('mouseenter', () => {
             clearInterval(slideInterval);
         });
 
-        slidesContainer.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+        slidesContainer.addEventListener('mouseleave', startSlideShow);
 
         // Navigation arrows
-        document.querySelector('.arrow.next')?.addEventListener('click', nextSlide);
+        document.querySelector('.arrow.next')?.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            nextSlide();
+            startSlideShow();
+        });
+
         document.querySelector('.arrow.prev')?.addEventListener('click', function() {
+            clearInterval(slideInterval);
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             showSlide(currentSlide);
+            startSlideShow();
         });
     }
 });
