@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Temporary debug */
+        body.debug .product-image-container {
+            border: 2px dashed red;
+        }
+    </style>
 </head>
-<body>
+<body class="debug">
     <header>
         <div class="logo">
-            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
+            <img src="/assets/images/logo.jpg" alt="LI PartyCo Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="inquiry.html">Inquiry</a></li>
-                <li><a href="photos.html">Photos</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/products.html">Products</a></li>
+                <li><a href="/inquiry.html">Inquiry</a></li>
+                <li><a href="/photos.html">Photos</a></li>
             </ul>
         </nav>
     </header>
@@ -26,9 +32,9 @@
         <h1>Our Rentals</h1>
         <div class="products-grid">
             <article class="product-card">
-                <a href="12ft-bar.html" class="product-link">
+                <a href="/12ft-bar.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar" loading="lazy">
+                        <img src="/assets/images/12ft-bar-product.jpg" alt="12ft Mobile Bar" loading="lazy">
                     </div>
                     <div class="product-info">
                         <h3>12ft Collapsable Bar</h3>
@@ -38,9 +44,9 @@
             </article>
             
             <article class="product-card">
-                <a href="tv-package.html" class="product-link">
+                <a href="/tv-package.html" class="product-link">
                     <div class="product-image-container">
-                        <img src="assets/images/tv-product.jpg" alt="TV Entertainment Package" loading="lazy">
+                        <img src="/assets/images/tv-product.jpg" alt="TV Entertainment Package" loading="lazy">
                     </div>
                     <div class="product-info">
                         <h3>Entertainment Package</h3>
@@ -55,6 +61,6 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
-    <script src="js/products.js"></script>
+    <script src="/js/products.js"></script>
 </body>
 </html>
