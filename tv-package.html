@@ -6,6 +6,12 @@
     <title>TV Entertainment Package - LI PartyCo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .edit-lock {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,30 +28,35 @@
         </nav>
     </header>
 
-    <section class="product-detail">
+    <main class="product-detail">
         <img src="assets/images/tv-product.jpg" alt="TV Entertainment Package">
-        <h2>TV Entertainment Package</h2>
-        <p class="price">$800/weekend</p>
-        <div class="description" id="product-description">
-            Complete entertainment solution includes:
-            <ul>
-                <li>85" 4K Ultra HD Smart TV</li>
-                <li>Premium surround sound system</li>
-                <li>Full streaming capabilities</li>
-                <li>HDMI and Bluetooth connectivity</li>
-                <li>24/7 technical support</li>
-            </ul>
-        </div>
         
-        <h3>Gallery</h3>
-        <div class="photo-grid">
-            <img src="assets/images/tv-detail-1.jpg" alt="TV Setup">
-            <img src="assets/images/tv-detail-2.jpg" alt="Sound System">
-            <img src="assets/images/tv-detail-3.jpg" alt="In Action">
+        <div class="product-info">
+            <h2>TV Entertainment Package</h2>
+            <p class="price">$800/weekend</p>
+            <div class="description" id="product-description">
+                Complete entertainment solution includes:
+                <ul>
+                    <li>85" 4K Ultra HD Smart TV</li>
+                    <li>Premium surround sound system</li>
+                    <li>Full streaming capabilities</li>
+                    <li>HDMI and Bluetooth connectivity</li>
+                    <li>24/7 technical support</li>
+                </ul>
+            </div>
         </div>
-    </section>
 
-    <!-- Edit Lock -->
+        <section class="gallery">
+            <h3>Gallery</h3>
+            <div class="photo-grid">
+                <img src="assets/images/tv-detail-1.jpg" alt="TV Setup">
+                <img src="assets/images/tv-detail-2.jpg" alt="Sound System">
+                <img src="assets/images/tv-detail-3.jpg" alt="In Action">
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Lock Button -->
     <div class="edit-lock" id="editLock">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiA0OEMxNzcuNiA0OCAxMTIgMTEzLjYgMTEyIDE5MnY0OGgtMTZDODMuMSAyNDAgNjQgMjU5LjEgNjQgMjg4djE2MENYNCA0NjUuNiAxMTAuNCA1MTIgMTY4IDUxMmgxNzZjNTcuNiAwIDEwNC00Ni40IDEwNC0xMDRWMjg4YzAtMjguOS0xOS4xLTQ4LTQ4LTQ4aC0xNnYtNDhjMC03OC40LTY1LjYtMTQ0LTE0NC0xNDR6bTAgMTQ0YzE3LjcgMCAzMiAxNC4zIDMyIDMydjQ4aC02NHYtNDhjMC0xNy43IDE0LjMtMzIgMzItMzJ6Ii8+PC9zdmc+" alt="Edit">
     </div>
@@ -66,6 +77,9 @@
         <p>&copy; 2025 The Long Island Party Company. All rights reserved.</p>
     </footer>
 
+    <script src="js/product-edit.js"></script>
+</body>
+</html>
     <script src="js/product-edit.js"></script>
 </body>
 </html>
