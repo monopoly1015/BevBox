@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const slides = [
         { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
         { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
-        { type: 'video', src: 'promo.mp4', alt: 'Company promo', hasSound: true }, // Added sound flag
+        { type: 'video', src: 'promo.mp4', alt: 'Company promo', hasSound: true },
         { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' }
     ];
 
@@ -28,15 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
                 `;
             } else {
-                // Enhanced video HTML with sound controls and accessibility
+                // Updated video HTML with sound controls
                 slideEl.innerHTML = `
                     <div class="video-container">
-                        <video ${slide.hasSound ? 'controls' : 'muted'} loop playsinline webkit-playsinline
+                        <video ${slide.hasSound ? '' : 'muted'} ${slide.hasSound ? 'controls' : ''} loop playsinline webkit-playsinline
                             aria-label="${slide.alt}" ${!slide.hasSound ? 'aria-muted="true"' : ''}>
                             <source src="assets/videos/${slide.src}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        ${slide.hasSound ? '<div class="sound-notice">Video contains sound</div>' : ''}
+                        ${slide.hasSound ? '<div class="sound-notice">Click video controls to unmute</div>' : ''}
                     </div>
                 `;
                 slideEl.classList.add('video-slide');
