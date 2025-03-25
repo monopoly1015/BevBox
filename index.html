@@ -7,15 +7,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Slideshow Styles */
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #f8f8f8;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .logo img {
+            max-height: 80px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav a {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Slideshow styles */
         .slideshow {
             max-width: 800px;
             margin: 2rem auto;
             position: relative;
             height: 450px;
             overflow: hidden;
-            background: #f5f5f5;
             border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .slides {
@@ -36,12 +85,42 @@
             opacity: 1;
         }
         
-        .slide img, .slide video {
+        .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #000;
+        }
+        
+        /* Video play button */
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+        }
+        
+        .video-play-btn:hover {
+            background: rgba(0,0,0,0.9);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        /* Navigation arrows */
         .arrow {
             position: absolute;
             top: 50%;
@@ -54,29 +133,82 @@
             cursor: pointer;
             z-index: 10;
             border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
-        .prev { left: 1rem; }
-        .next { right: 1rem; }
+        .arrow:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .prev {
+            left: 1rem;
+        }
+        
+        .next {
+            right: 1rem;
+        }
+        
+        /* About section */
+        .about {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #f8f8f8;
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body>
-    <!-- Your header and hero sections remain the same -->
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="inquiry.html">Inquiry</a></li>
+                <li><a href="photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Updated Slideshow Section -->
+    <section class="hero">
+        <h1>LIPCO</h1>
+        <p>The Long Island Party Company</p>
+    </section>
+
+    <!-- Slideshow Section -->
     <section class="slideshow">
         <div class="slides">
-            <!-- Slides will be inserted here by JavaScript -->
+            <!-- Slides will be inserted by JavaScript -->
         </div>
         <button class="arrow prev">&#10094;</button>
         <button class="arrow next">&#10095;</button>
     </section>
 
-    <!-- Your about and footer sections remain the same -->
+    <section class="about">
+        <h2>About The Long Island Party Company</h2>
+        <p>
+            LI PartyCo brings the party straight to you. Browse through our various bar offerings and select the best fit for your event. 
+            Our service includes drop-off, pick-up and everything in between to ensure the best experience for your guests.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LI PartyCo. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Define slideshow content
+            // Slideshow configuration
             const slides = [
                 { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
                 { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
@@ -84,84 +216,112 @@
                 { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' }
             ];
 
-            // 2. Get DOM elements
+            // DOM elements
             const slidesContainer = document.querySelector('.slides');
             const prevBtn = document.querySelector('.prev');
             const nextBtn = document.querySelector('.next');
-            
-            // 3. Create slides
-            slides.forEach((slide, index) => {
-                const slideElement = document.createElement('div');
-                slideElement.className = 'slide';
-                if (index === 0) slideElement.classList.add('active');
-                
-                if (slide.type === 'image') {
-                    slideElement.innerHTML = `
-                        <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
-                    `;
-                } else {
-                    slideElement.innerHTML = `
-                        <video autoplay muted loop playsinline>
-                            <source src="assets/videos/${slide.src}" type="video/mp4">
-                            Your browser does not support videos.
-                        </video>
-                    `;
-                    slideElement.classList.add('video-slide');
-                }
-                
-                slidesContainer.appendChild(slideElement);
-            });
-
-            // 4. Slideshow functionality
-            const slideElements = document.querySelectorAll('.slide');
             let currentIndex = 0;
             let interval;
-            
+
+            // Create slides
+            function initializeSlides() {
+                slides.forEach((slide, index) => {
+                    const slideEl = document.createElement('div');
+                    slideEl.className = 'slide';
+                    
+                    if (slide.type === 'image') {
+                        slideEl.innerHTML = `
+                            <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
+                        `;
+                    } else {
+                        slideEl.innerHTML = `
+                            <video muted loop playsinline webkit-playsinline>
+                                <source src="assets/videos/${slide.src}" type="video/mp4">
+                            </video>
+                        `;
+                        slideEl.classList.add('video-slide');
+                    }
+                    
+                    slidesContainer.appendChild(slideEl);
+                });
+            }
+
+            // Show specific slide
             function showSlide(index) {
-                slideElements.forEach(slide => slide.classList.remove('active'));
+                const slideElements = document.querySelectorAll('.slide');
+                
+                // Hide all slides
+                slideElements.forEach(slide => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                        // Remove any existing play buttons
+                        const existingBtn = slide.querySelector('.video-play-btn');
+                        if (existingBtn) existingBtn.remove();
+                    }
+                });
+                
+                // Show current slide
                 slideElements[index].classList.add('active');
+                const video = slideElements[index].querySelector('video');
                 
                 // Handle video playback
-                const video = slideElements[index].querySelector('video');
                 if (video) {
-                    video.currentTime = 0;
-                    video.play().catch(e => console.log('Autoplay prevented:', e));
+                    const playPromise = video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            if (error.name === 'NotAllowedError') {
+                                // Show play button when autoplay is blocked
+                                const playBtn = document.createElement('button');
+                                playBtn.className = 'video-play-btn';
+                                playBtn.innerHTML = '▶ Play Video';
+                                playBtn.onclick = () => {
+                                    video.play()
+                                        .then(() => playBtn.remove())
+                                        .catch(e => console.log('Playback failed:', e));
+                                };
+                                video.parentNode.appendChild(playBtn);
+                            }
+                        });
+                    }
                 }
             }
-            
+
+            // Start slideshow timer
             function startSlideshow() {
+                clearInterval(interval);
                 interval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % slideElements.length;
+                    currentIndex = (currentIndex + 1) % slides.length;
                     showSlide(currentIndex);
                 }, 5000);
             }
-            
-            function stopSlideshow() {
-                clearInterval(interval);
-            }
-            
-            // 5. Event listeners
-            prevBtn.addEventListener('click', () => {
-                stopSlideshow();
-                currentIndex = (currentIndex - 1 + slideElements.length) % slideElements.length;
-                showSlide(currentIndex);
-                startSlideshow();
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                stopSlideshow();
-                currentIndex = (currentIndex + 1) % slideElements.length;
-                showSlide(currentIndex);
-                startSlideshow();
-            });
-            
-            // Pause on hover
-            slidesContainer.addEventListener('mouseenter', stopSlideshow);
-            slidesContainer.addEventListener('mouseleave', startSlideshow);
-            
-            // 6. Initialize
+
+            // Initialize slideshow
+            initializeSlides();
             showSlide(0);
             startSlideshow();
+
+            // Navigation controls
+            prevBtn.addEventListener('click', () => {
+                clearInterval(interval);
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+                startSlideshow();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                clearInterval(interval);
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+                startSlideshow();
+            });
+
+            // Pause on hover
+            slidesContainer.addEventListener('mouseenter', () => clearInterval(interval));
+            slidesContainer.addEventListener('mouseleave', startSlideshow);
         });
     </script>
 </body>
