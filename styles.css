@@ -28,6 +28,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Add this line */
 }
 
 .logo {
@@ -46,7 +47,10 @@ header {
 
 /* ===== NAVIGATION ===== */
 nav {
-    margin: 0 auto;
+    position: absolute; /* New */
+    left: 50%; /* New */
+    transform: translateX(-50%); /* New */
+    margin: 0; /* Changed from 'auto' */
 }
 
 nav ul {
