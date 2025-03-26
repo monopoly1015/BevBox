@@ -25,7 +25,7 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 120px;
+    min-height: 150px; /* Increased to accommodate 300px logo */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,16 +38,15 @@ header {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1001;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
-    height: 360px;
+    height: 300px;
     width: auto;
-    transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: translateY(-50%) scale(1.05);
+    max-height: 100%; /* Ensures it never exceeds header height */
 }
 
 /* ===== NAVIGATION ===== */
@@ -251,7 +250,10 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 300px;
+        height: 250px;
+    }
+    header {
+        min-height: 130px;
     }
 }
 
@@ -261,12 +263,14 @@ footer p {
         margin-bottom: 1rem;
         text-align: center;
         transform: none;
+        height: auto;
     }
     .logo img {
-        height: 240px;
+        height: 200px;
     }
-    .logo img:hover {
-        transform: scale(1.05);
+    header {
+        min-height: auto;
+        padding-top: 1.5rem;
     }
     nav ul {
         flex-wrap: wrap;
@@ -282,7 +286,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 200px;
+        height: 160px;
     }
     nav a {
         padding: 0.5rem 1rem;
