@@ -19,12 +19,12 @@ body {
 /* ===== HEADER & LOGO ===== */
 header {
     background-color: #0B0B45;
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 120px;
+    min-height: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +35,7 @@ header {
 }
 
 .logo img {
-    height: 140px;
+    height: 160px; /* Increased logo size */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -46,9 +46,7 @@ header {
 
 /* ===== NAVIGATION ===== */
 nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
 }
 
 nav ul {
@@ -79,7 +77,7 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Contact Us Button (Right Corner) */
+/* Contact Us Button (Top Right) */
 .contact-btn {
     position: absolute;
     right: 2rem;
@@ -169,6 +167,63 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* ===== PRODUCTS ===== */
+.products-container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-image-container {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.03);
+}
+
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.price {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+}
+
 /* ===== FOOTER ===== */
 footer {
     background-color: #0B0B45;
@@ -185,10 +240,10 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 120px;
+        height: 140px;
     }
     header {
-        min-height: 100px;
+        min-height: 130px;
     }
     .contact-btn {
         top: 1.5rem;
@@ -203,11 +258,9 @@ footer p {
         position: relative;
     }
     .logo img {
-        height: 100px;
+        height: 120px;
     }
     nav {
-        position: static;
-        transform: none;
         margin: 1rem 0;
         width: 100%;
     }
@@ -227,7 +280,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 80px;
+        height: 100px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
