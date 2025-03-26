@@ -344,8 +344,8 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 100px !important;
-        min-width: 250px !important;
+        height: 150px !important;
+        min-width: 260px !important;
     }
     nav a {
         padding: 0.5rem 1rem;
