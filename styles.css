@@ -24,11 +24,10 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 180px; /* Increased for larger logo */
+    min-height: 180px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Added for nav positioning */
 }
 
 .logo {
@@ -36,7 +35,7 @@ header {
 }
 
 .logo img {
-    height: 240px; /* 50% larger (was 160px) */
+    height: 240px; /* Increased logo size */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -45,12 +44,9 @@ header {
     transform: scale(1.05);
 }
 
-/* ===== NAVIGATION (SHIFTED 10% LEFT) ===== */
+/* ===== NAVIGATION ===== */
 nav {
-    position: absolute;
-    left: 45%; /* Adjusted from 50% to shift left */
-    transform: translateX(-50%);
-    margin: 0;
+    margin: 0 auto;
 }
 
 nav ul {
@@ -81,7 +77,7 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* ===== CONTACT BUTTON (COMPLETELY UNCHANGED) ===== */
+/* Contact Us Button (Top Right) */
 .contact-btn {
     position: absolute;
     right: 2rem;
@@ -244,7 +240,7 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 210px; /* Scaled down proportionally */
+        height: 210px;
     }
     header {
         min-height: 160px;
@@ -262,11 +258,9 @@ footer p {
         position: relative;
     }
     .logo img {
-        height: 180px; /* Scaled down proportionally */
+        height: 180px;
     }
     nav {
-        position: static;
-        transform: none;
         margin: 1rem 0;
         width: 100%;
     }
@@ -286,7 +280,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px; /* Scaled down proportionally */
+        height: 150px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
@@ -299,3 +293,4 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+
