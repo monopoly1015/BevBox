@@ -14,7 +14,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #fff;
-    padding-bottom: 70px; /* Added to prevent content from being hidden behind fixed contact button */
+    padding-bottom: 70px;
 }
 
 /* ===== HEADER & LOGO ===== */
@@ -25,7 +25,7 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 180px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,18 +35,19 @@ header {
 .logo {
     position: absolute;
     left: 2rem;
-    top: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1001;
 }
 
 .logo img {
-    height: 360px; /* Increased by 50% from 240px */
+    height: 360px;
     width: auto;
     transition: transform 0.3s ease;
 }
 
 .logo img:hover {
-    transform: scale(1.05);
+    transform: translateY(-50%) scale(1.05);
 }
 
 /* ===== NAVIGATION ===== */
@@ -259,9 +260,13 @@ footer p {
         position: static;
         margin-bottom: 1rem;
         text-align: center;
+        transform: none;
     }
     .logo img {
         height: 240px;
+    }
+    .logo img:hover {
+        transform: scale(1.05);
     }
     nav ul {
         flex-wrap: wrap;
