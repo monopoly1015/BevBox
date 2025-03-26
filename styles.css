@@ -45,6 +45,12 @@ header {
 }
 
 /* ===== NAVIGATION ===== */
+nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -125,15 +131,15 @@ nav a:hover {
     margin: 0 auto;
 }
 
-/* ===== PHOTO GALLERY FIXES ===== */
+/* ===== PHOTO GALLERY ===== */
 .gallery-container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
+    text-align: center;
 }
 
 .gallery-container h1 {
-    text-align: center;
     margin-bottom: 2rem;
 }
 
@@ -152,7 +158,7 @@ nav a:hover {
 
 .gallery-item img {
     width: 100%;
-    height: 200px; /* Reduced image height */
+    height: 200px;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
@@ -161,6 +167,19 @@ nav a:hover {
 .gallery-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #0B0B45;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+footer p {
+    margin: 0;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -181,9 +200,16 @@ nav a:hover {
         flex-direction: column;
         padding: 1rem;
         min-height: auto;
+        position: relative;
     }
     .logo img {
         height: 100px;
+    }
+    nav {
+        position: static;
+        transform: none;
+        margin: 1rem 0;
+        width: 100%;
     }
     .contact-btn {
         position: static;
