@@ -18,24 +18,26 @@ body {
 
 /* ===== HEADER & LOGO ===== */
 header {
-    background-color: #2c3e70; /* Darker navy blue */
-    padding: 3rem 0 2rem 360px; /* Thicker top padding to push logo down */
+    background-color: #1a6bb0; /* Deep sea blue */
+    padding: 1.5rem 0 1.5rem 300px; /* Adjusted padding */
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 150px; /* Thicker header */
+    min-height: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
     position: absolute;
     left: 2rem;
-    top: 3rem; /* Pushed down further */
+    top: 1rem; /* Brought closer to top */
     z-index: 1001;
 }
 
 .logo img {
-    height: 350px;
+    height: 300px; /* Slightly smaller logo */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -46,10 +48,9 @@ header {
 
 /* ===== NAVIGATION ===== */
 nav {
+    width: 100%;
     display: flex;
     justify-content: center;
-    width: calc(100% - 360px); /* Account for logo space */
-    margin: 0 auto;
 }
 
 nav ul {
@@ -58,33 +59,33 @@ nav ul {
     gap: 1.5rem;
     padding: 0;
     margin: 0;
-    align-items: center;
 }
 
 nav a {
-    color: #cc0000; /* Darker red text */
+    color: #cc0000; /* Dark red text */
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
-    background-color: rgba(255,255,255,0.3); /* Whiter semi-transparent */
+    background-color: white; /* Solid white */
+    border: 2px solid #cc0000; /* Red border */
     transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
-    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 nav a:hover {
-    background-color: rgba(255,255,255,0.4);
-    color: #990000; /* Even darker red on hover */
+    background-color: #f8f8f8;
+    color: #990000; /* Darker red on hover */
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
     text-align: center;
     padding: 4rem 1rem;
-    background: linear-gradient(135deg, #3a5f9a, #2c3e70); /* Matching blues */
+    background: linear-gradient(135deg, #2a7cbe, #1a6bb0); /* Matching blues */
     color: white;
 }
 
@@ -267,7 +268,7 @@ nav a:hover {
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: #2c3e70; /* Matching darker navy */
+    background-color: #1a6bb0; /* Matching deep sea blue */
     color: white;
     margin-top: 3rem;
 }
@@ -275,34 +276,31 @@ footer {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 280px;
+        height: 250px;
     }
     header {
-        padding-left: 300px;
+        padding-left: 260px;
     }
 }
 
 @media (max-width: 768px) {
     header {
-        padding: 3rem 0 2rem 200px;
-        min-height: 120px;
+        padding: 1.5rem 0 1.5rem 180px;
+        min-height: 90px;
     }
     
     .logo {
-        top: 2rem;
+        top: 0.5rem;
     }
     
     .logo img {
-        height: 180px;
-    }
-    
-    nav {
-        width: calc(100% - 200px);
+        height: 160px;
     }
     
     nav ul {
         flex-wrap: wrap;
         gap: 0.75rem;
+        justify-content: center;
     }
     
     nav a {
@@ -329,29 +327,22 @@ footer {
 
 @media (max-width: 480px) {
     header {
-        padding: 8rem 0 1rem 0;
+        padding: 6rem 0 1rem 0;
         text-align: center;
-        min-height: auto;
+        flex-direction: column;
     }
     
     .logo {
         position: static;
-        transform: none;
         margin-bottom: 1rem;
-        top: auto;
     }
     
     .logo img {
-        height: 150px;
-    }
-    
-    nav {
-        width: 100%;
+        height: 140px;
     }
     
     nav ul {
         gap: 0.5rem;
-        justify-content: center;
     }
     
     nav a {
