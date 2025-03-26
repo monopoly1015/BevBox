@@ -16,12 +16,6 @@ body {
     background-color: #fff;
 }
 
-/* ===== HEADER CONTAINER ===== */
-.header-container {
-    position: relative; /* New wrapper for positioning context */
-    width: 100%;
-}
-
 /* ===== HEADER & LOGO ===== */
 header {
     background-color: #0B0B45;
@@ -30,7 +24,7 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 180px;
+    min-height: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +35,7 @@ header {
 }
 
 .logo img {
-    height: 240px;
+    height: 160px; /* Increased logo size */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -50,11 +44,9 @@ header {
     transform: scale(1.05);
 }
 
-/* ===== NAVIGATION (PAGE-CENTERED) ===== */
+/* ===== NAVIGATION ===== */
 nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
 }
 
 nav ul {
@@ -85,12 +77,11 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* ===== CONTACT BUTTON (UNCHANGED POSITION) ===== */
+/* Contact Us Button (Top Right) */
 .contact-btn {
     position: absolute;
     right: 2rem;
     top: 2rem;
-    z-index: 1001;
 }
 
 .contact-btn a {
@@ -249,10 +240,10 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 210px;
+        height: 140px;
     }
     header {
-        min-height: 160px;
+        min-height: 130px;
     }
     .contact-btn {
         top: 1.5rem;
@@ -264,13 +255,12 @@ footer p {
         flex-direction: column;
         padding: 1rem;
         min-height: auto;
+        position: relative;
     }
     .logo img {
-        height: 180px;
+        height: 120px;
     }
     nav {
-        position: static;
-        transform: none;
         margin: 1rem 0;
         width: 100%;
     }
@@ -290,7 +280,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px;
+        height: 100px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
@@ -299,6 +289,10 @@ footer p {
     .gallery-item img {
         height: 150px;
     }
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+}
     .photo-gallery {
         grid-template-columns: 1fr;
     }
