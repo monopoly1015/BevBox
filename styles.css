@@ -33,12 +33,14 @@ header {
 }
 
 .logo {
+    position: absolute;
+    left: 2rem;
+    top: 1rem;
     z-index: 1001;
-    margin-bottom: 1rem;
 }
 
 .logo img {
-    height: 240px; /* Increased logo size as requested */
+    height: 360px; /* Increased by 50% from 240px */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -248,20 +250,18 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 200px;
-    }
-    header {
-        min-height: 160px;
+        height: 300px;
     }
 }
 
 @media (max-width: 768px) {
-    header {
-        padding: 1rem;
-        min-height: auto;
+    .logo {
+        position: static;
+        margin-bottom: 1rem;
+        text-align: center;
     }
     .logo img {
-        height: 180px;
+        height: 240px;
     }
     nav ul {
         flex-wrap: wrap;
@@ -277,7 +277,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px;
+        height: 200px;
     }
     nav a {
         padding: 0.5rem 1rem;
