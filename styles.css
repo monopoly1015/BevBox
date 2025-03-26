@@ -16,6 +16,12 @@ body {
     background-color: #fff;
 }
 
+/* ===== HEADER CONTAINER ===== */
+.header-container {
+    position: relative; /* New wrapper for positioning context */
+    width: 100%;
+}
+
 /* ===== HEADER & LOGO ===== */
 header {
     background-color: #0B0B45;
@@ -28,7 +34,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Add this line */
 }
 
 .logo {
@@ -36,7 +41,7 @@ header {
 }
 
 .logo img {
-    height: 270px; /* Increased logo size */
+    height: 240px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -45,12 +50,11 @@ header {
     transform: scale(1.05);
 }
 
-/* ===== NAVIGATION ===== */
+/* ===== NAVIGATION (PAGE-CENTERED) ===== */
 nav {
-    position: absolute; /* New */
-    left: 50%; /* New */
-    transform: translateX(-50%); /* New */
-    margin: 0; /* Changed from 'auto' */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav ul {
@@ -81,11 +85,12 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Contact Us Button (Top Right) */
+/* ===== CONTACT BUTTON (UNCHANGED POSITION) ===== */
 .contact-btn {
     position: absolute;
     right: 2rem;
     top: 2rem;
+    z-index: 1001;
 }
 
 .contact-btn a {
@@ -244,7 +249,7 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 235px;
+        height: 210px;
     }
     header {
         min-height: 160px;
@@ -259,12 +264,13 @@ footer p {
         flex-direction: column;
         padding: 1rem;
         min-height: auto;
-        position: relative;
     }
     .logo img {
-        height: 200px;
+        height: 180px;
     }
     nav {
+        position: static;
+        transform: none;
         margin: 1rem 0;
         width: 100%;
     }
@@ -284,7 +290,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 165px;
+        height: 150px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
@@ -297,4 +303,3 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
-
