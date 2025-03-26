@@ -321,7 +321,7 @@ footer p {
         justify-content: center;
     }
     .logo img {
-        height: 120px !important;
+        height: 200px !important;
         min-width: 300px !important;
         transform: scaleX(1.2);
         margin: 0 auto;
@@ -344,7 +344,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px !important;
+        height: 200px !important;
         min-width: 260px !important;
     }
     nav a {
