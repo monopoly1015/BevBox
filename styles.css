@@ -18,7 +18,7 @@ body {
 
 /* ===== HEADER & LOGO ===== */
 header {
-    background-color: #1a6bb0; /* Deep sea blue */
+    background-color: #0B0B45; /* Deep sea blue */
     padding: 1.5rem 0 1.5rem 300px; /* Adjusted padding */
     position: sticky;
     top: 0;
@@ -268,7 +268,7 @@ nav a:hover {
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: #1a6bb0; /* Matching deep sea blue */
+    background-color: #0B0B45; /* Matching deep sea blue */
     color: white;
     margin-top: 3rem;
 }
