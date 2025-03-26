@@ -42,11 +42,11 @@ header {
 }
 
 .logo img {
-    height: 300px !important;
+    height: 280px !important;
     width: auto;
     min-width: 400px;
     object-fit: contain;
-    transform: scaleX(1.5);
+    transform: scaleX(1.4);
     margin: 0;
 }
 
