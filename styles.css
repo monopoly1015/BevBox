@@ -14,6 +14,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #fff;
+    overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 /* ===== HEADER & LOGO ===== */
@@ -83,12 +84,14 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* ===== CONTACT BUTTON (TOP-RIGHT CORNER) ===== */
+/* ===== CONTACT BUTTON (TRUE PAGE EDGE) ===== */
 .contact-btn {
     position: fixed;
     right: 0.5rem;
     top: 2rem;
     z-index: 1001;
+    margin: 0;
+    padding: 0;
 }
 
 .contact-btn a {
@@ -103,6 +106,7 @@ nav a:hover {
     align-items: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
+    white-space: nowrap; /* Prevents text wrapping */
 }
 
 .contact-btn a::before {
@@ -274,6 +278,11 @@ footer p {
         transform: none;
         margin: 1rem 0;
         width: 100%;
+    }
+    .contact-btn {
+        position: static;
+        margin: 1rem auto;
+        order: -1;
     }
     nav ul {
         flex-wrap: wrap;
