@@ -35,7 +35,7 @@ header {
 }
 
 .logo img {
-    height: 240px; /* Increased logo size */
+    height: 270px; /* Increased logo size */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -240,7 +240,7 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 210px;
+        height: 235px;
     }
     header {
         min-height: 160px;
@@ -258,7 +258,7 @@ footer p {
         position: relative;
     }
     .logo img {
-        height: 180px;
+        height: 200px;
     }
     nav {
         margin: 1rem 0;
@@ -280,7 +280,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px;
+        height: 165px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
