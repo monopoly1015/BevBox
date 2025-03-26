@@ -47,9 +47,6 @@ header {
 /* ===== NAVIGATION ===== */
 nav {
     margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 nav ul {
@@ -197,6 +194,24 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+.product-image-container {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.03);
+}
+
 .product-info {
     padding: 1.5rem;
     text-align: center;
@@ -220,4 +235,61 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .logo img {
+        height: 140px;
+    }
+    header {
+        min-height: 130px;
+    }
+    .contact-btn {
+        top: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        min-height: auto;
+        position: relative;
+    }
+    .logo img {
+        height: 120px;
+    }
+    nav {
+        margin: 1rem 0;
+        width: 100%;
+    }
+    .contact-btn {
+        position: static;
+        margin: 1rem auto;
+        order: -1;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .gallery-item img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 100px;
+    }
+    nav a, .contact-btn a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    .gallery-item img {
+        height: 150px;
+    }
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
 }
