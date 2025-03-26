@@ -52,12 +52,12 @@ nav a:hover {
 
 /* ===== LOGO ===== */
 .logo {
-    text-align: center;
-    padding: 0.5rem 0;
+    text-align: left;
+    padding: 0.1rem 0;
 }
 
 .logo img {
-    height: 70px;
+    height: 100px;
     width: auto;
     transition: transform 0.3s ease;
 }
