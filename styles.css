@@ -86,7 +86,7 @@ nav a:hover {
 /* ===== CONTACT BUTTON (TOP-RIGHT CORNER) ===== */
 .contact-btn {
     position: fixed;
-    right: 2rem;
+    right: 0.5rem;
     top: 2rem;
     z-index: 1001;
 }
