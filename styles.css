@@ -18,39 +18,38 @@ body {
 
 /* ===== HEADER & LOGO ===== */
 header {
-    background-color: #0B0B45; /* Deep sea blue */
-    padding: 1.5rem 0 1.5rem 300px; /* Adjusted padding */
+    background-color: #0B0B45; /* Your deep sea blue */
+    padding: 1rem 0; /* Uniform padding */
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 100px;
     display: flex;
-    align-items: center;
+    justify-content: center; /* Center everything */
+    position: relative; /* Needed for logo positioning */
 }
 
 .logo {
     position: absolute;
     left: 2rem;
-    top: 1rem; /* Brought closer to top */
+    top: 0.5rem; /* Raised higher */
     z-index: 1001;
 }
 
 .logo img {
-    height: 300px; /* Slightly smaller logo */
+    height: 120px; /* Slightly smaller */
     width: auto;
     transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: scale(1.05);
 }
 
 /* ===== NAVIGATION ===== */
 nav {
     width: 100%;
+    max-width: 1200px; /* Match your content width */
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center nav buttons */
+    position: relative; /* For logo spacing */
 }
 
 nav ul {
@@ -62,17 +61,17 @@ nav ul {
 }
 
 nav a {
-    color: #cc0000; /* Dark red text */
+    color: #cc0000;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
-    background-color: white; /* Solid white */
-    border: 2px solid #cc0000; /* Red border */
+    background-color: white;
+    border: 2px solid #cc0000;
     transition: all 0.3s ease;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+
 
 nav a:hover {
     background-color: #f8f8f8;
