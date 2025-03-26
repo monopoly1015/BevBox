@@ -83,7 +83,7 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* ===== CONTACT BUTTON (FIXED TO PAGE) ===== */
+/* ===== CONTACT BUTTON (TOP-RIGHT CORNER) ===== */
 .contact-btn {
     position: fixed;
     right: 2rem;
@@ -274,11 +274,6 @@ footer p {
         transform: none;
         margin: 1rem 0;
         width: 100%;
-    }
-    .contact-btn {
-        position: static;
-        margin: 1rem auto;
-        order: -1;
     }
     nav ul {
         flex-wrap: wrap;
