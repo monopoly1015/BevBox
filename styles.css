@@ -24,7 +24,7 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    min-height: 150px;
+    min-height: 180px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,10 +32,14 @@ header {
 
 .logo {
     z-index: 1001;
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .logo img {
-    height: 160px; /* Increased logo size */
+    height: 240px; /* Increased by 50% from 160px */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -46,7 +50,9 @@ header {
 
 /* ===== NAVIGATION ===== */
 nav {
-    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav ul {
@@ -240,10 +246,10 @@ footer p {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .logo img {
-        height: 140px;
+        height: 210px;
     }
     header {
-        min-height: 130px;
+        min-height: 160px;
     }
     .contact-btn {
         top: 1.5rem;
@@ -257,10 +263,17 @@ footer p {
         min-height: auto;
         position: relative;
     }
+    .logo {
+        position: static;
+        transform: none;
+        margin: 1rem 0;
+    }
     .logo img {
-        height: 120px;
+        height: 180px;
     }
     nav {
+        position: static;
+        transform: none;
         margin: 1rem 0;
         width: 100%;
     }
@@ -280,7 +293,7 @@ footer p {
 
 @media (max-width: 480px) {
     .logo img {
-        height: 100px;
+        height: 150px;
     }
     nav a, .contact-btn a {
         padding: 0.5rem 1rem;
