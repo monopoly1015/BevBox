@@ -34,7 +34,7 @@ header {
 }
 
 .logo img {
-    height: 140px; /* 2x larger than original */
+    height: 420px; /* 2x larger than original */
     width: auto;
     transition: transform 0.3s ease;
 }
