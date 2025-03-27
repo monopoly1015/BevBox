@@ -16,7 +16,62 @@ body {
     background-color: #fff;
     padding-bottom: 70px;
 }
+/* ===== TOP HEADER ===== */
+.top-header {
+    background-color: #cc0000;
+    padding: 0.3rem 2rem;
+    color: white;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #990000;
+}
 
+.top-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email-link {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.email-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.estimate-btn {
+    background-color: white;
+    color: #cc0000;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.estimate-btn:hover {
+    background-color: #f8f8f8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.clock-icon {
+    font-size: 0.9rem;
+}
+
+/* Adjust main header position */
+header {
+    top: 30px; /* Adjust if needed based on top-header height */
+}
 /* ===== HEADER & LOGO - FINAL FIXED SIZE ===== */
 header {
     background-color: #0B0B45;
