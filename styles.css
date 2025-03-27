@@ -105,28 +105,21 @@ header {
 .logo {
     position: absolute;
     left: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
     z-index: 1001;
     display: flex;
     align-items: center;
-    height: 140px; /* Fixed height for better control */
-    max-width: 300px; /* Prevent logo from overflowing */
+
 }
 
 .logo img {
-    height: 100%;
+    height: 250px;
     width: auto;
     object-fit: contain;
-    transform: scaleX(1.1); /* Reduced scaling for better proportions */
+    transform: scaleX(1.2); /* Reduced scaling for better proportions */
     margin: 0;
-    transition: transform 0.3s ease; /* Smooth hover effect */
 }
 
-.logo:hover img {
-    transform: scaleX(1.1) scale(1.05); /* Subtle hover animation */
-}
-}
 
 /* ===== NAVIGATION ===== */
 nav {
