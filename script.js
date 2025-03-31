@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Slideshow configuration
     const slides = [
         { type: 'image', src: 'photo1.jpg', alt: 'Beer Pouring...' },
-        { type: 'image', src: 'bar-in-use.jpg', alt: 'Beer Pouring...' }
-        { type: 'image', src: 'bar-in-use2.JPG', alt: 'BevBar' }
         { type: 'video', src: 'promo.mp4', alt: 'Beer Pouring...', hasSound: true },
-        { type: 'image', src: 'photo3.jpg', alt: 'Beer Pouring...' }
+        { type: 'image', src: 'photo3.jpg', alt: 'Beer Pouring...' },
+        { type: 'image', src: 'bar-in-use.jpg', alt: 'Beer Pouring...' },
+        { type: 'image', src: 'bar-in-use2.JPG', alt: 'BevBar' }
     ];
 
     // DOM elements
