@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Slideshow configuration
     const slides = [
-        { type: 'image', src: 'photo1.jpg', alt: 'Event setup' },
-        { type: 'image', src: 'photo2.jpg', alt: 'Bar service' },
-        { type: 'video', src: 'promo.mp4', alt: 'Company promo', hasSound: true },
-        { type: 'image', src: 'photo3.jpg', alt: 'Happy guests' }
+        { type: 'image', src: 'photo1.jpg', alt: 'Beer Pouring...' },
+        { type: 'image', src: 'bar-in-use.jpg', alt: 'Beer Pouring...' }
+        { type: 'image', src: 'bar-in-use2.JPG', alt: 'BevBar' }
+        { type: 'video', src: 'promo.mp4', alt: 'Beer Pouring...', hasSound: true },
+        { type: 'image', src: 'photo3.jpg', alt: 'Beer Pouring...' }
     ];
 
     // DOM elements
