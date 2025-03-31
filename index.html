@@ -131,8 +131,6 @@
             padding: 0 1rem;
             text-align: center;
         }
-        
-       
     </style>
 </head>
 <div class="top-header">
@@ -149,20 +147,20 @@
 </div>
 <body>
     <header>
-    <div class="logo">
-        <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
-    </div>
-    <nav>
-        <div class="contact-btn">
-            <a href="inquiry.html">Contact Us</a>
+        <div class="logo">
+            <img src="assets/images/logo.jpg" alt="LI PartyCo Logo">
         </div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="photos.html">Photos</a></li>
-        </ul>
-    </nav>
-</header>
+        <nav>
+            <div class="contact-btn">
+                <a href="inquiry.html">Contact Us</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="photos.html">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Slideshow Section -->
     <section class="slideshow">
@@ -177,142 +175,21 @@
         <h2>About The Long Island Party Company</h2>
         <p>
             At The Long Island Party Company, we’re committed to making your event unforgettable. Browse our wide selection of premium bar offerings and choose the perfect setup for your celebration. Whether it's a casual gathering in the yard or an upscale affair, we’ve got something that fits your style.
-       
-        <br>
-        <br>
+            <br><br>
             We handle everything from drop-off to pick-up, ensuring a seamless experience for you and your guests. Sit back, relax, and let us take care of the details—because with LIPCO, the party always comes to you!
-
-
         </p>
     </section>
 
     <footer>
-    <div class="footer-content">
-        <a href="https://www.instagram.com/lipartyco?igsh=aHNiaDB2Mnc2bGc4" class="instagram-link" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
-        </a>
-        <p>© 2025 The Long Island Party Company. All Rights Reserved</p>
-    </div>
-</footer>
+        <div class="footer-content">
+            <a href="https://www.instagram.com/lipartyco?igsh=aHNiaDB2Mnc2bGc4" class="instagram-link" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+            </a>
+            <p>© 2025 The Long Island Party Company. All Rights Reserved</p>
+        </div>
+    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Slideshow configuration
-            const slides = [
-                { type: 'image', src: 'photo1.jpg', alt: 'Beer Pouring...' },
-                { type: 'video', src: 'promo.mp4', alt: 'Beer Pouring...' },
-                { type: 'image', src: 'photo3.jpg', alt: 'Beer Pouring...' },
-                { type: 'image', src: 'bar-in-use'.jpg', alt: 'Beer Pouring...' },
-                { type: 'image', src: 'bar-in-use2'.JPG', alt: 'Beer Pouring...' }
-            ];
-
-            // DOM elements
-            const slidesContainer = document.querySelector('.slides');
-            const prevBtn = document.querySelector('.prev');
-            const nextBtn = document.querySelector('.next');
-            let currentIndex = 0;
-            let interval;
-
-            // Create slides
-            function initializeSlides() {
-                slides.forEach((slide, index) => {
-                    const slideEl = document.createElement('div');
-                    slideEl.className = 'slide';
-                    
-                    if (slide.type === 'image') {
-                        slideEl.innerHTML = `
-                            <img src="assets/images/${slide.src}" alt="${slide.alt}" loading="lazy">
-                        `;
-                    } else {
-                        slideEl.innerHTML = `
-                            <video muted loop playsinline webkit-playsinline>
-                                <source src="assets/videos/${slide.src}" type="video/mp4">
-                            </video>
-                        `;
-                        slideEl.classList.add('video-slide');
-                    }
-                    
-                    slidesContainer.appendChild(slideEl);
-                });
-            }
-
-            // Show specific slide
-            function showSlide(index) {
-                const slideElements = document.querySelectorAll('.slide');
-                
-                // Hide all slides
-                slideElements.forEach(slide => {
-                    slide.classList.remove('active');
-                    const video = slide.querySelector('video');
-                    if (video) {
-                        video.pause();
-                        video.currentTime = 0;
-                        // Remove any existing play buttons
-                        const existingBtn = slide.querySelector('.video-play-btn');
-                        if (existingBtn) existingBtn.remove();
-                    }
-                });
-                
-                // Show current slide
-                slideElements[index].classList.add('active');
-                const video = slideElements[index].querySelector('video');
-                
-                // Handle video playback
-                if (video) {
-                    const playPromise = video.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            if (error.name === 'NotAllowedError') {
-                                // Show play button when autoplay is blocked
-                                const playBtn = document.createElement('button');
-                                playBtn.className = 'video-play-btn';
-                                playBtn.innerHTML = '▶ Play Video';
-                                playBtn.onclick = () => {
-                                    video.play()
-                                        .then(() => playBtn.remove())
-                                        .catch(e => console.log('Playback failed:', e));
-                                };
-                                video.parentNode.appendChild(playBtn);
-                            }
-                        });
-                    }
-                }
-            }
-
-            // Start slideshow timer
-            function startSlideshow() {
-                clearInterval(interval);
-                interval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    showSlide(currentIndex);
-                }, 5000);
-            }
-
-            // Initialize slideshow
-            initializeSlides();
-            showSlide(0);
-            startSlideshow();
-
-            // Navigation controls
-            prevBtn.addEventListener('click', () => {
-                clearInterval(interval);
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                showSlide(currentIndex);
-                startSlideshow();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                clearInterval(interval);
-                currentIndex = (currentIndex + 1) % slides.length;
-                showSlide(currentIndex);
-                startSlideshow();
-            });
-
-            // Pause on hover
-            slidesContainer.addEventListener('mouseenter', () => clearInterval(interval));
-            slidesContainer.addEventListener('mouseleave', startSlideshow);
-        });
-    </script>
+    <!-- External script only (no inline duplicate) -->
+    <script src="script.js"></script>
 </body>
 </html>
