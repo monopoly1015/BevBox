@@ -91,7 +91,21 @@
 <!-- MAIN -->
 <main class="products-container">
     <h1>Our Rentals</h1>
+<div class="product-controls">
 
+    <!-- View Toggle -->
+    <button id="viewToggle" class="control-btn">Switch to List View</button>
+
+    <!-- Category Filter -->
+    <select id="categoryFilter" class="control-btn">
+        <option value="all">All Categories</option>
+        <option value="Bars & Trailers">Bars & Trailers</option>
+        <option value="Tents">Tents</option>
+        <option value="Tables & Chairs">Tables & Chairs</option>
+        <option value="Catering Equipment">Catering Equipment</option>
+    </select>
+
+</div>
     <!-- Dynamic content goes here -->
     <div id="products-container"></div>
 </main>
