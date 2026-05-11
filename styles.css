@@ -182,7 +182,7 @@ nav a {
     flex-shrink: 0;
 }
 
-/* ===== FOOTER (FIXED + STABLE) ===== */
+/* ===== FOOTER ===== */
 footer {
     background-color: #0B0B45;
     color: white;
@@ -211,6 +211,7 @@ footer {
     display: block;
 }
 
+/* ===== BACK TO TOP ===== */
 .back-to-top {
     position: fixed;
     bottom: 90px;
@@ -230,6 +231,32 @@ footer {
 .back-to-top:hover {
     background: #a80000;
 }
+
+/* ===================================================== */
+/* ✅ ADDED FIX: PHOTO GALLERY (PREVENT HUGE IMAGES) */
+/* ===================================================== */
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .products-container.list-view .product-card {
