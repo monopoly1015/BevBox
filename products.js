@@ -1,3 +1,4 @@
+console.log("PRODUCTS JS LOADED");
 document.addEventListener("DOMContentLoaded", function () {
 
     const products = [
