@@ -104,7 +104,6 @@ header {
     left: 1.2rem;
     top: 0;
     height: 100%;
-    z-index: 1001;
     display: flex;
     align-items: center;
 }
@@ -114,8 +113,6 @@ header {
     width: auto;
     min-width: 300px;
     object-fit: contain;
-    transform: scaleX(1);
-    margin: 0;
 }
 
 /* ===== NAV ===== */
@@ -161,41 +158,45 @@ nav a {
 /* ===== PRODUCTS ===== */
 .products-container {
     padding: 2rem 1rem;
-    max-width: 1200px;
+    max-width: 1100px; /* FIX: prevents full-screen stretching */
     margin: 0 auto;
 }
 
 /* ============================= */
-/* ✅ NEW: PRODUCT CONTROLS BAR */
+/* PRODUCT CONTROLS (UPDATED UI) */
 /* ============================= */
 .product-controls {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 2rem;
 }
 
+/* MATCH YOUR SITE BUTTON STYLE */
 .control-btn {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
+    padding: 10px 14px;
+    border-radius: 50px;
+    border: 2px solid #cc0000;
     background: white;
-    border-radius: 6px;
-    font-size: 14px;
+    color: #cc0000;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.25s ease;
+    font-family: inherit;
 }
 
 .control-btn:hover {
-    background: #f5f5f5;
+    background: #cc0000;
+    color: white;
 }
 
 /* ============================= */
-/* PRODUCTS GRID (DEFAULT VIEW) */
+/* GRID VIEW */
 /* ============================= */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
     margin-top: 1rem;
 }
 
@@ -248,9 +249,8 @@ nav a {
 }
 
 /* ============================= */
-/* ✅ NEW: LIST VIEW MODE */
+/* LIST VIEW MODE */
 /* ============================= */
-
 .products-container.list-view .products-grid {
     display: block;
 }
@@ -283,6 +283,11 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+
+    .products-container {
+        max-width: 100%;
+    }
+
     .products-container.list-view .product-card {
         flex-direction: column;
         text-align: center;
@@ -290,9 +295,5 @@ footer {
 
     .products-container.list-view .product-info {
         text-align: center;
-    }
-}
-    .product-detail .photo-grid img {
-        height: 200px;
     }
 }
