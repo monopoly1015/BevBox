@@ -297,4 +297,18 @@ footer {
     .products-container.list-view .product-info {
         text-align: center;
     }
+    .instagram-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #cc0000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instagram-link img {
+    width: 20px;
+    height: 20px;
 }
