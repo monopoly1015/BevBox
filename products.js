@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const container = document.getElementById("products-container");
+    const categorySelect = document.getElementById("categoryFilter");
 
     if (!container) {
         console.error("Products container not found");
@@ -37,24 +38,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentCategory = null;
     let html = "";
 
+    // =============================
+    // BUILD PRODUCTS
+    // =============================
     products.forEach(product => {
 
-        // CATEGORY HEADER
         if (product.category !== currentCategory) {
 
             if (currentCategory !== null) {
-                html += `</div>`;
+                html += `</div></section>`;
             }
 
             currentCategory = product.category;
 
+            const categoryId = currentCategory
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/&/g, "and");
+
             html += `
-                <h2 style="margin: 2rem 0 1rem;">${currentCategory}</h2>
-                <div class="products-grid">
+                <section id="${categoryId}" class="product-section">
+                    <h2 style="margin: 2rem 0 1rem;">${currentCategory}</h2>
+                    <div class="products-grid">
             `;
         }
 
-        // PRODUCT CARD
         html += `
             <div class="product-card">
                 <div class="product-image-container">
@@ -73,11 +81,84 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     });
 
-    // CLOSE FINAL GRID
     if (currentCategory !== null) {
-        html += `</div>`;
+        html += `</div></section>`;
     }
 
     container.innerHTML = html;
+
+    // =============================
+    // CATEGORY DROPDOWN SCROLL
+    // =============================
+    if (categorySelect) {
+        categorySelect.addEventListener("change", function () {
+
+            if (this.value === "all") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                return;
+            }
+
+            const id = this.value
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/&/g, "and");
+
+            const target = document.getElementById(id);
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    }
+
+    // =============================
+    // BACK TO TOP BUTTON
+    // =============================
+    const backToTop = document.createElement("button");
+    backToTop.innerText = "↑ Top";
+    backToTop.className = "back-to-top";
+
+    document.body.appendChild(backToTop);
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // =============================
+    // STICKY CATEGORY HIGHLIGHT
+    // =============================
+    const sections = document.querySelectorAll(".product-section");
+
+    window.addEventListener("scroll", () => {
+
+        let scrollPos = window.scrollY + 150;
+
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+
+            const id = section.id;
+
+            if (scrollPos >= top && scrollPos < bottom) {
+
+                // highlight dropdown
+                if (categorySelect) {
+                    categorySelect.value = section.querySelector("h2")
+                        .innerText;
+                }
+            }
+        });
+    });
 
 });
