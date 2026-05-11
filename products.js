@@ -53,8 +53,53 @@ document.addEventListener("DOMContentLoaded", function () {
                         Request Quote
                     </a>
                 </div>
+                
             </article>
         `;
+    });
+
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+    const container = document.querySelector(".products-container");
+    const viewToggle = document.getElementById("viewToggle");
+    const categoryFilter = document.getElementById("categoryFilter");
+
+    // =========================
+    // VIEW TOGGLE (GRID / LIST)
+    // =========================
+    let isListView = false;
+
+    viewToggle.addEventListener("click", function () {
+        isListView = !isListView;
+
+        if (isListView) {
+            container.classList.add("list-view");
+            viewToggle.textContent = "Switch to Grid View";
+        } else {
+            container.classList.remove("list-view");
+            viewToggle.textContent = "Switch to List View";
+        }
+    });
+
+    // =========================
+    // CATEGORY FILTER (SCROLL)
+    // =========================
+    categoryFilter.addEventListener("change", function () {
+        const value = this.value;
+
+        if (value === "all") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+        }
+
+        const headers = document.querySelectorAll("h2");
+
+        headers.forEach(h2 => {
+            if (h2.textContent.trim() === value) {
+                h2.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
     });
 
 });
