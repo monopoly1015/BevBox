@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const products = [
+
         // 🍹 Bars & Trailers
         { name: "BevBar", category: "Bars & Trailers", img: "assets/images/bevbar.jpg" },
         { name: "BevBox", category: "Bars & Trailers", img: "assets/images/bevbox.jpg" },
@@ -31,20 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     container.innerHTML = "";
 
-    products.forEach((product, index) => {
+    products.forEach((product) => {
 
-        // CATEGORY CHANGE → CLOSE OLD GRID + OPEN NEW ONE
+        // NEW CATEGORY START
         if (product.category !== currentCategory) {
 
+            // close previous grid safely
             if (gridOpen) {
                 container.innerHTML += `</div>`;
-                gridOpen = false;
             }
 
             currentCategory = product.category;
 
             container.innerHTML += `
-                <h2 style="margin-top:30px;">${currentCategory}</h2>
+                <h2 style="margin: 2rem 0 1rem;">${currentCategory}</h2>
                 <div class="products-grid">
             `;
 
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="product-info">
                     <h3>${product.name}</h3>
 
-                    <a href="inquiry.html?item=${encodeURIComponent(product.name)}" 
+                    <a href="inquiry.html?item=${encodeURIComponent(product.name)}"
                        class="quote-btn">
                         Request Quote
                     </a>
@@ -70,7 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     });
 
-    // CLOSE LAST GRID
+    // CLOSE FINAL GRID SAFELY
+    if (gridOpen) {
+        container.innerHTML += `</div>`;
+    }
+
+});
     if (gridOpen) {
         container.innerHTML += `</div>`;
     }
