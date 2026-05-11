@@ -27,33 +27,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const container = document.getElementById("products-container");
 
+    if (!container) {
+        console.error("Products container not found");
+        return;
+    }
+
     let currentCategory = null;
-    let gridOpen = false;
+    let html = "";
 
-    container.innerHTML = "";
+    products.forEach(product => {
 
-    products.forEach((product) => {
-
-        // NEW CATEGORY START
+        // NEW CATEGORY HEADER
         if (product.category !== currentCategory) {
 
-            // close previous grid safely
-            if (gridOpen) {
-                container.innerHTML += `</div>`;
+            if (currentCategory !== null) {
+                html += `</div>`;
             }
 
             currentCategory = product.category;
 
-            container.innerHTML += `
+            html += `
                 <h2 style="margin: 2rem 0 1rem;">${currentCategory}</h2>
                 <div class="products-grid">
             `;
-
-            gridOpen = true;
         }
 
         // PRODUCT CARD
-        container.innerHTML += `
+        html += `
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="${product.img}" alt="${product.name}">
@@ -71,10 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     });
 
-    // CLOSE FINAL GRID SAFELY
-    if (gridOpen) {
-        container.innerHTML += `</div>`;
+    // CLOSE LAST GRID
+    if (currentCategory !== null) {
+        html += `</div>`;
     }
+
+    container.innerHTML = html;
 
 });
     if (gridOpen) {
