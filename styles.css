@@ -37,52 +37,17 @@ body {
 .email-link {
     color: white;
     text-decoration: none;
-    transition: opacity 0.3s;
     display: flex;
     align-items: center;
-    margin-left: -5px;
+    gap: 8px;
 }
 
 .email-link:hover {
     opacity: 0.8;
-    text-decoration: underline;
 }
 
 .email-link strong {
     font-weight: 700;
-}
-
-.email-icon {
-    margin-right: 8px;
-    font-size: 1rem;
-}
-
-.estimate-wrapper {
-    margin-right: -10px;
-}
-
-.estimate-btn {
-    background-color: white;
-    color: #cc0000;
-    padding: 0.3rem 1.2rem;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: all 0.3s ease;
-}
-
-.estimate-btn:hover {
-    background-color: #f8f8f8;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.clock-icon {
-    font-size: 0.9rem;
 }
 
 /* ===== HEADER ===== */
@@ -102,8 +67,6 @@ header {
 .logo {
     position: absolute;
     left: 1.2rem;
-    top: 0;
-    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -158,13 +121,11 @@ nav a {
 /* ===== PRODUCTS ===== */
 .products-container {
     padding: 2rem 1rem;
-    max-width: 1100px; /* FIX: prevents full-screen stretching */
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-/* ============================= */
-/* PRODUCT CONTROLS (UPDATED UI) */
-/* ============================= */
+/* ===== CONTROLS ===== */
 .product-controls {
     display: flex;
     gap: 12px;
@@ -172,7 +133,6 @@ nav a {
     margin: 1rem 0 2rem;
 }
 
-/* MATCH YOUR SITE BUTTON STYLE */
 .control-btn {
     padding: 10px 14px;
     border-radius: 50px;
@@ -181,8 +141,7 @@ nav a {
     color: #cc0000;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
-    font-family: inherit;
+    transition: 0.25s;
 }
 
 .control-btn:hover {
@@ -190,20 +149,15 @@ nav a {
     color: white;
 }
 
-/* ============================= */
-/* GRID VIEW */
-/* ============================= */
+/* ===== GRID ===== */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
     justify-content: center;
     gap: 1.5rem;
-    margin-top: 1rem;
 }
 
-/* ============================= */
-/* PRODUCT CARD */
-/* ============================= */
+/* ===== PRODUCT CARD ===== */
 .product-card {
     background: white;
     border-radius: 10px;
@@ -223,7 +177,6 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
 .product-image-container img {
@@ -234,7 +187,7 @@ nav a {
 
 /* INFO */
 .product-info {
-    padding: 1.5rem;
+    padding: 1.2rem;
     text-align: center;
 }
 
@@ -249,9 +202,7 @@ nav a {
     border-radius: 5px;
 }
 
-/* ============================= */
-/* LIST VIEW MODE */
-/* ============================= */
+/* ===== LIST VIEW ===== */
 .products-container.list-view .products-grid {
     display: block;
 }
@@ -282,6 +233,26 @@ footer {
     padding: 2rem;
 }
 
+/* ===== INSTAGRAM FIX (IMPORTANT) ===== */
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.instagram-link img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.instagram-link:hover img {
+    transform: scale(1.1);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
@@ -297,18 +268,4 @@ footer {
     .products-container.list-view .product-info {
         text-align: center;
     }
-    .instagram-link {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid #cc0000;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.instagram-link img {
-    width: 20px;
-    height: 20px;
 }
