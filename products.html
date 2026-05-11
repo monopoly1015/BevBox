@@ -7,50 +7,6 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
-
-    <style>
-        .product-image-container {
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f5f5f5;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .product-image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .products-container h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .quote-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #000;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .quote-btn:hover {
-            background: #333;
-        }
-    </style>
 </head>
 
 <body>
@@ -59,12 +15,10 @@
 <div class="top-header">
     <div class="top-header-content">
         <a href="mailto:lipartyco@gmail.com?subject=Rental Inquiry" class="email-link">
-            <span class="email-icon">✉</span> <strong>lipartyco@gmail.com</strong>
+            ✉ <strong>lipartyco@gmail.com</strong>
         </a>
         <div class="estimate-wrapper">
-            <a href="inquiry.html" class="estimate-btn">
-                <span class="clock-icon">🕒</span> Get In Touch
-            </a>
+            <a href="inquiry.html" class="estimate-btn">🕒 Get In Touch</a>
         </div>
     </div>
 </div>
@@ -90,46 +44,40 @@
 
 <!-- MAIN -->
 <main class="products-container">
+
     <h1>Our Rentals</h1>
-<div class="product-controls">
 
-    <!-- View Toggle -->
-    <button id="viewToggle" class="control-btn">Switch to List View</button>
+    <!-- CONTROLS -->
+    <div class="product-controls">
+        <button id="viewToggle" class="control-btn">📋 List View</button>
 
-    <!-- Category Filter -->
-    <select id="categoryFilter" class="control-btn">
-        <option value="all">All Categories</option>
-        <option value="Bars & Trailers">Bars & Trailers</option>
-        <option value="Tents">Tents</option>
-        <option value="Tables & Chairs">Tables & Chairs</option>
-        <option value="Catering Equipment">Catering Equipment</option>
-    </select>
+        <select id="categoryFilter" class="control-btn">
+            <option value="all">All Categories</option>
+            <option value="Bars & Trailers">Bars & Trailers</option>
+            <option value="Tents">Tents</option>
+            <option value="Tables & Chairs">Tables & Chairs</option>
+            <option value="Catering Equipment">Catering</option>
+        </select>
+    </div>
 
-</div>
-    <!-- Dynamic content goes here -->
+    <!-- PRODUCTS -->
     <div id="products-container"></div>
+
 </main>
 
 <!-- FOOTER -->
 <footer>
     <div class="footer-content">
-        <a href="https://www.instagram.com/lipartyco?igsh=aHNiaDB2Mnc2bGc4" 
-           class="instagram-link" 
-           target="_blank" 
-           rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        <a href="https://www.instagram.com/lipartyco?igsh=aHNiaDB2Mnc2bGc4" target="_blank" class="instagram-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
         </a>
-
-        <p>© 2025 The Long Island Party Company. All Rights Reserved</p>
+        <p>© 2025 LI PartyCo</p>
     </div>
 </footer>
 
-<!-- SCRIPT -->
 <script src="products.js"></script>
 
 </body>
 </html>
-</footer>
-    <script src="products.js"></script>
 </body>
 </html>
