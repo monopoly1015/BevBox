@@ -1,4 +1,5 @@
 console.log("PRODUCTS JS LOADED");
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const products = [
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     products.forEach(product => {
 
-        // NEW CATEGORY HEADER
+        // CATEGORY HEADER
         if (product.category !== currentCategory) {
 
             if (currentCategory !== null) {
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     });
 
-    // CLOSE LAST GRID
+    // CLOSE FINAL GRID
     if (currentCategory !== null) {
         html += `</div>`;
     }
@@ -80,8 +81,3 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = html;
 
 });
-    if (gridOpen) {
-        container.innerHTML += `</div>`;
-    }
-
-);
