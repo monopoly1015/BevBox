@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const products = [
         // 🍹 Bars & Trailers
-        { name: "BevBar", category: "Bars & Trailers", img: "assets/images/main-bar.jpg" },
+        { name: "BevBar", category: "Bars & Trailers", img: "assets/images/bevbar.jpg" },
         { name: "BevBox", category: "Bars & Trailers", img: "assets/images/bevbox.jpg" },
-        { name: "4ft Folding Bar", category: "Bars & Trailers", img: "assets/images/folding-bar.jpg" },
+        { name: "4ft Folding Bar", category: "Bars & Trailers", img: "assets/images/4ftbar.jpg" },
 
         // ⛺ Tents
         { name: "20x30 Frame Tent", category: "Tents", img: "assets/images/20x30.jpg" },
@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "White Resin Chairs", category: "Tables & Chairs", img: "assets/images/chairs.jpg" },
         { name: "6ft Banquet Tables", category: "Tables & Chairs", img: "assets/images/6ft.jpg" },
         { name: "48in Round Tables", category: "Tables & Chairs", img: "assets/images/round.jpg" },
-        { name: "32in Cocktail Table", category: "Tables & Chairs", img: "assets/images/cocktail.jpg" },
+        { name: "32in Cocktail Table", category: "Tables & Chairs", img: "assets/images/32cocktail.jpg" },
 
-        // 🍽️ Catering Equipment
-        { name: "Chafing Dishes", category: "Catering Equipment", img: "assets/images/chafing.jpg" }
+        // 🍽️ Other Rental Equipment
+        { name: "Chafing Dishes", category: "Other Rental Equipment", img: "assets/images/chafing.jpg" },
+        { name: "9x12 Bounce House", category: "Other Rental Equipment", img: "assets/images/bouncehouse.jpg" }
     ];
 
     const container = document.getElementById("products-container");
