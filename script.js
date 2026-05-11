@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Slideshow configuration
     const slides = [
         { type: 'video', src: 'promo.mp4', alt: 'Beer Pouring...' },
-        { type: 'video', src: 'anniversary.mp4', alt: 'Beer Pouring...' },
+        { type: 'video', src: 'anniversaryvideo.mp4', alt: 'Beer Pouring...' },
         { type: 'image', src: 'bevbarWineSideView.jpg', alt: 'Beer Pouring...' },
         { type: 'image', src: 'anniversary.jpg', alt: 'Beer Pouring' },
         { type: 'image', src: 'bevbarMacParkCrowd.jpg', alt: 'Beer Pouring' }
