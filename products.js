@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "20x20 Frame Tent", category: "Tents", img: "assets/images/20x20.jpg" },
         { name: "10x20 Pop Up Tent", category: "Tents", img: "assets/images/10x20.jpg" },
         { name: "10x15 Pop Up Tent", category: "Tents", img: "assets/images/10x15.jpg" },
-        { name: "Tent Sidewalls", category: "Tents", img: "assets/images/sidewalls.jpg" },
+        { name: "Tent Sidewalls (Frame Tents Only)", category: "Tents", img: "assets/images/sidewalls.jpg" },
 
         // 🪑 Tables & Seating
         { name: "White Resin Chairs", category: "Tables & Chairs", img: "assets/images/chairs.jpg" },
