@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 🍹 Bars & Trailers
         { name: "BevBar", category: "Bars & Trailers", img: "assets/images/bevbar.jpg" },
         { name: "BevBox", category: "Bars & Trailers", img: "assets/images/bevbox.jpg" },
-        { name: "4ft Folding Bar", category: "Bars & Trailers", img: "assets/images/4ftbar.jpg" },
+        { name: "4ft Bar", category: "Bars & Trailers", img: "assets/images/4ftbar.jpg" },
 
         // ⛺ Tents
         { name: "20x30 Frame Tent", category: "Tents", img: "assets/images/20x30.jpg" },
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "White Resin Chairs", category: "Tables & Chairs", img: "assets/images/chairs.jpg" },
         { name: "6ft Banquet Tables", category: "Tables & Chairs", img: "assets/images/6ft.jpg" },
         { name: "48in Round Tables", category: "Tables & Chairs", img: "assets/images/round.jpg" },
-        { name: "32in Cocktail Table", category: "Tables & Chairs", img: "assets/images/32cocktail.jpg" },
+        { name: "32in Cocktail Tables", category: "Tables & Chairs", img: "assets/images/32cocktail.jpg" },
 
         // 🍽️ Other Rental Equipment
         { name: "Chafing Dishes", category: "Other Rental Equipment", img: "assets/images/chafing.jpg" },
